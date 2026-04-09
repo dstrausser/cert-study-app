@@ -1,8 +1,14 @@
 import { Question } from "@/lib/types";
 import { sc100Questions } from "./sc-100";
+import { az500Questions } from "./az-500";
+import { ms900Questions } from "./ms-900";
+import { az900Questions } from "./az-900";
 
 const questionBanks: Record<string, Question[]> = {
   "sc-100": sc100Questions,
+  "az-500": az500Questions,
+  "ms-900": ms900Questions,
+  "az-900": az900Questions,
 };
 
 export function getQuestions(certId: string): Question[] {
