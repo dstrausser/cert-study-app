@@ -460,4 +460,642 @@ export const az104Questions: Question[] = [
       "Azure Advisor analyzes telemetry and configuration to provide actionable recommendations across the well-architected pillars.",
     difficulty: "easy",
   },
+  // Additional governance coverage
+  {
+    id: "az104-026",
+    certId: "az-104",
+    domainId: "identities-governance",
+    type: "single",
+    question:
+      "Which Azure construct lets you organize subscriptions for hierarchical policy and RBAC inheritance?",
+    options: [
+      { id: "a", text: "Management groups" },
+      { id: "b", text: "Resource groups" },
+      { id: "c", text: "Tags" },
+      { id: "d", text: "Availability sets" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Management groups create a hierarchy above subscriptions for inheriting policies and RBAC.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-027",
+    certId: "az-104",
+    domainId: "identities-governance",
+    type: "single",
+    question:
+      "Which Azure feature lets you delegate management of customer subscriptions to a service provider's Entra tenant?",
+    options: [
+      { id: "a", text: "Azure Lighthouse" },
+      { id: "b", text: "Azure Bastion" },
+      { id: "c", text: "Azure Monitor" },
+      { id: "d", text: "Azure Site Recovery" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Azure Lighthouse delegates resource access to managing tenants for cross-tenant management.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-028",
+    certId: "az-104",
+    domainId: "identities-governance",
+    type: "single",
+    question:
+      "Which Azure RBAC role lets a user create resources in any resource group within the subscription scope?",
+    options: [
+      { id: "a", text: "Contributor at the subscription scope" },
+      { id: "b", text: "Reader" },
+      { id: "c", text: "Backup Operator" },
+      { id: "d", text: "Network Watcher" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Contributor at the subscription scope can create/manage resources in any RG without granting access.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-029",
+    certId: "az-104",
+    domainId: "identities-governance",
+    type: "single",
+    question:
+      "Which Azure feature enforces tag inheritance from a resource group to its child resources?",
+    options: [
+      { id: "a", text: "Azure Policy 'Inherit a tag from the resource group' built-in" },
+      { id: "b", text: "Resource locks" },
+      { id: "c", text: "Cost Management budgets" },
+      { id: "d", text: "Service health alerts" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "An Azure Policy with the modify effect can inherit tags from the parent resource group.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-030",
+    certId: "az-104",
+    domainId: "identities-governance",
+    type: "single",
+    question:
+      "Which Cost Management feature alerts when actual or forecasted spend exceeds a threshold?",
+    options: [
+      { id: "a", text: "Budgets with alerts" },
+      { id: "b", text: "Reservations" },
+      { id: "c", text: "Pricing calculator" },
+      { id: "d", text: "Azure Advisor" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Cost Management Budgets fire alerts on actual or forecasted spend at configured thresholds.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-031",
+    certId: "az-104",
+    domainId: "identities-governance",
+    type: "single",
+    question:
+      "Which Azure RBAC scope is most appropriate to grant a Sentinel analyst access only to a specific Log Analytics workspace?",
+    options: [
+      { id: "a", text: "Resource scope (the workspace)" },
+      { id: "b", text: "Subscription scope" },
+      { id: "c", text: "Tenant scope" },
+      { id: "d", text: "Management group" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Granting at the workspace resource scope follows least privilege.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-032",
+    certId: "az-104",
+    domainId: "identities-governance",
+    type: "single",
+    question:
+      "Which feature lets you bring on-premises servers under Azure Policy and Defender for Cloud?",
+    options: [
+      { id: "a", text: "Azure Arc-enabled servers" },
+      { id: "b", text: "Azure Lighthouse" },
+      { id: "c", text: "Azure Migrate" },
+      { id: "d", text: "Azure Bastion" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Azure Arc projects on-prem and multi-cloud servers as Azure resources for governance.",
+    difficulty: "medium",
+  },
+
+  // Additional storage coverage
+  {
+    id: "az104-033",
+    certId: "az-104",
+    domainId: "storage",
+    type: "single",
+    question:
+      "Which storage account access option provides time-bound, scoped, signed URLs for delegating access without sharing keys?",
+    options: [
+      { id: "a", text: "Shared Access Signature (SAS) — preferably user-delegation SAS" },
+      { id: "b", text: "Account key" },
+      { id: "c", text: "Anonymous container access" },
+      { id: "d", text: "Service endpoint" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "SAS tokens grant time-limited access; user-delegation SAS uses Entra credentials and is preferred.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-034",
+    certId: "az-104",
+    domainId: "storage",
+    type: "single",
+    question:
+      "Which storage feature lets you connect privately to a storage account over a private IP in your VNet?",
+    options: [
+      { id: "a", text: "Private endpoint" },
+      { id: "b", text: "Service endpoint only" },
+      { id: "c", text: "ExpressRoute Direct" },
+      { id: "d", text: "Site-to-site VPN" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "A private endpoint exposes the storage account on a private IP inside your VNet via Private Link.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-035",
+    certId: "az-104",
+    domainId: "storage",
+    type: "single",
+    question:
+      "Which Azure Storage tier provides offline storage at the lowest cost with rehydration latency?",
+    options: [
+      { id: "a", text: "Archive" },
+      { id: "b", text: "Cold" },
+      { id: "c", text: "Cool" },
+      { id: "d", text: "Hot" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Archive is the cheapest, offline tier; rehydration to a higher tier takes hours.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-036",
+    certId: "az-104",
+    domainId: "storage",
+    type: "single",
+    question:
+      "Which Azure service migrates large amounts of data to Azure using a physical device shipped to Microsoft?",
+    options: [
+      { id: "a", text: "Azure Data Box" },
+      { id: "b", text: "Azure File Sync" },
+      { id: "c", text: "Storage Mover" },
+      { id: "d", text: "AzCopy" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Azure Data Box ships rugged appliances for offline data ingest at TB/PB scale.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-037",
+    certId: "az-104",
+    domainId: "storage",
+    type: "single",
+    question:
+      "Which Azure storage feature retains soft-deleted blobs for a configurable period?",
+    options: [
+      { id: "a", text: "Soft delete for blobs (with versioning)" },
+      { id: "b", text: "Reservation pricing" },
+      { id: "c", text: "Service endpoint" },
+      { id: "d", text: "Replication LRS" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Soft delete keeps deleted/overwritten blob data recoverable for the retention window.",
+    difficulty: "medium",
+  },
+
+  // Additional compute coverage
+  {
+    id: "az104-038",
+    certId: "az-104",
+    domainId: "compute",
+    type: "single",
+    question:
+      "Which feature autoscales VM Scale Sets based on CPU or custom metrics?",
+    options: [
+      { id: "a", text: "Autoscale rules in Azure Monitor" },
+      { id: "b", text: "Resource locks" },
+      { id: "c", text: "Azure Backup policy" },
+      { id: "d", text: "Reservations" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Autoscale rules add/remove instances based on metric thresholds or schedules.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-039",
+    certId: "az-104",
+    domainId: "compute",
+    type: "single",
+    question:
+      "Which Azure compute service runs container apps with HTTP scaling and Dapr support?",
+    options: [
+      { id: "a", text: "Azure Container Apps" },
+      { id: "b", text: "Azure Kubernetes Service" },
+      { id: "c", text: "Azure Functions" },
+      { id: "d", text: "Azure Spring Apps" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Container Apps is a serverless container platform with KEDA scaling and Dapr integration.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-040",
+    certId: "az-104",
+    domainId: "compute",
+    type: "single",
+    question:
+      "Which AKS feature isolates tenant workloads on dedicated node pools by node taints and selectors?",
+    options: [
+      { id: "a", text: "Multiple node pools with taints / tolerations / nodeSelectors" },
+      { id: "b", text: "Availability zones only" },
+      { id: "c", text: "Reservations" },
+      { id: "d", text: "Azure Monitor metrics" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "AKS supports multiple node pools that can be isolated using Kubernetes taints and selectors.",
+    difficulty: "hard",
+  },
+  {
+    id: "az104-041",
+    certId: "az-104",
+    domainId: "compute",
+    type: "single",
+    question:
+      "Which Azure VM feature lets you grant a VM access to Azure resources without storing credentials?",
+    options: [
+      { id: "a", text: "System-assigned or user-assigned managed identity" },
+      { id: "b", text: "Service principal with secret in code" },
+      { id: "c", text: "Custom script extension" },
+      { id: "d", text: "Run command" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Managed identities give a VM an Entra identity for AAD-authenticated calls without secrets.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-042",
+    certId: "az-104",
+    domainId: "compute",
+    type: "single",
+    question:
+      "Which Azure VM extension installs custom scripts on first boot or on-demand?",
+    options: [
+      { id: "a", text: "Custom Script Extension" },
+      { id: "b", text: "Azure Diagnostics extension" },
+      { id: "c", text: "DependencyAgent" },
+      { id: "d", text: "AntiMalware" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Custom Script Extension downloads and runs scripts during deployment or on demand.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-043",
+    certId: "az-104",
+    domainId: "compute",
+    type: "single",
+    question:
+      "Which feature replicates a VM image across regions so VMs can be deployed quickly worldwide?",
+    options: [
+      { id: "a", text: "Azure Compute Gallery (formerly Shared Image Gallery)" },
+      { id: "b", text: "Recovery Services vault" },
+      { id: "c", text: "Azure Migrate" },
+      { id: "d", text: "Azure Backup" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Compute Gallery stores managed images and replicates them to multiple regions/zones.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-044",
+    certId: "az-104",
+    domainId: "compute",
+    type: "single",
+    question:
+      "Which Azure compute pricing option commits to one or three years for predictable workloads?",
+    options: [
+      { id: "a", text: "Azure Reservations" },
+      { id: "b", text: "Spot VMs" },
+      { id: "c", text: "Pay-as-you-go" },
+      { id: "d", text: "Hybrid Benefit" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Reservations commit to a term in exchange for substantial discounts.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-045",
+    certId: "az-104",
+    domainId: "compute",
+    type: "single",
+    question:
+      "Which Azure VM pricing option offers deep discounts but allows Azure to evict the VM with short notice?",
+    options: [
+      { id: "a", text: "Spot VMs" },
+      { id: "b", text: "Reserved VMs" },
+      { id: "c", text: "Dedicated host" },
+      { id: "d", text: "Hybrid Benefit" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Spot VMs use spare capacity at low cost; Azure can evict them when capacity is needed.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-046",
+    certId: "az-104",
+    domainId: "compute",
+    type: "single",
+    question:
+      "Which Azure feature lets a Windows Server VM use existing on-prem Windows Server licenses with Software Assurance?",
+    options: [
+      { id: "a", text: "Azure Hybrid Benefit" },
+      { id: "b", text: "Reservations" },
+      { id: "c", text: "Spot VMs" },
+      { id: "d", text: "Dev/Test pricing" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Azure Hybrid Benefit reuses on-prem Windows Server / SQL Server licenses on Azure for cost savings.",
+    difficulty: "medium",
+  },
+  // Additional networking coverage
+  {
+    id: "az104-047",
+    certId: "az-104",
+    domainId: "networking",
+    type: "single",
+    question:
+      "Which feature lets two non-peered VNets share a hub firewall and ExpressRoute via a centralized topology?",
+    options: [
+      { id: "a", text: "Hub-and-spoke architecture (manual or via Azure Virtual WAN)" },
+      { id: "b", text: "Service endpoint" },
+      { id: "c", text: "Azure Front Door" },
+      { id: "d", text: "Private DNS forwarding only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Hub-and-spoke (custom or Virtual WAN) consolidates shared services like firewall, gateway, and DNS in a hub.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-048",
+    certId: "az-104",
+    domainId: "networking",
+    type: "single",
+    question:
+      "Which Azure resource provides global, anycast HTTP(S) load balancing and CDN with WAF?",
+    options: [
+      { id: "a", text: "Azure Front Door (Premium with WAF)" },
+      { id: "b", text: "Azure Application Gateway" },
+      { id: "c", text: "Azure Load Balancer" },
+      { id: "d", text: "Azure Traffic Manager" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Front Door is the global L7 service with anycast routing, caching, and WAF (Premium).",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-049",
+    certId: "az-104",
+    domainId: "networking",
+    type: "single",
+    question:
+      "Which Azure DNS service hosts public DNS records for a domain?",
+    options: [
+      { id: "a", text: "Azure DNS (public zones)" },
+      { id: "b", text: "Azure Private DNS" },
+      { id: "c", text: "Azure DNS Private Resolver" },
+      { id: "d", text: "Traffic Manager" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Public Azure DNS zones host internet-facing DNS records.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-050",
+    certId: "az-104",
+    domainId: "networking",
+    type: "single",
+    question:
+      "Which Azure feature lets DNS queries from on-premises resolve Azure private DNS zones?",
+    options: [
+      { id: "a", text: "Azure DNS Private Resolver with inbound endpoint" },
+      { id: "b", text: "Azure Public DNS" },
+      { id: "c", text: "Azure Private Link only" },
+      { id: "d", text: "Azure Bastion" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "DNS Private Resolver provides inbound/outbound endpoints to bridge DNS between on-prem and Azure private zones.",
+    difficulty: "hard",
+  },
+  {
+    id: "az104-051",
+    certId: "az-104",
+    domainId: "networking",
+    type: "single",
+    question:
+      "Which Azure component lets a VNet route traffic to a network virtual appliance (NVA)?",
+    options: [
+      { id: "a", text: "User-defined route (UDR) in a route table" },
+      { id: "b", text: "BGP peering only" },
+      { id: "c", text: "Service endpoint" },
+      { id: "d", text: "DNS forwarder" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "UDRs override default system routes to send traffic via NVAs (e.g., third-party firewall).",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-052",
+    certId: "az-104",
+    domainId: "networking",
+    type: "single",
+    question:
+      "Which Azure Load Balancer SKU supports availability zones, HTTPS health probes, and outbound rules?",
+    options: [
+      { id: "a", text: "Standard SKU" },
+      { id: "b", text: "Basic SKU" },
+      { id: "c", text: "Gateway SKU" },
+      { id: "d", text: "Internal classic" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Standard Load Balancer is zone-redundant and supports advanced features; Basic is being retired.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-053",
+    certId: "az-104",
+    domainId: "networking",
+    type: "single",
+    question:
+      "Which Azure VPN Gateway SKU supports BGP and active-active configurations?",
+    options: [
+      { id: "a", text: "VpnGw1 or higher (Standard, not Basic)" },
+      { id: "b", text: "Basic SKU" },
+      { id: "c", text: "Application Gateway v1" },
+      { id: "d", text: "ExpressRoute Local" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Basic VPN gateways do not support BGP or active-active; production uses VpnGw1+ SKUs.",
+    difficulty: "medium",
+  },
+
+  // Additional monitor coverage
+  {
+    id: "az104-054",
+    certId: "az-104",
+    domainId: "monitor-maintain",
+    type: "single",
+    question:
+      "Which Azure feature lets you trigger an action group when an alert fires (email, SMS, Logic App, ITSM)?",
+    options: [
+      { id: "a", text: "Action group on the alert rule" },
+      { id: "b", text: "Resource lock" },
+      { id: "c", text: "Diagnostic setting" },
+      { id: "d", text: "Service health" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Action groups define notification and automation steps that alerts call when triggered.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-055",
+    certId: "az-104",
+    domainId: "monitor-maintain",
+    type: "single",
+    question:
+      "Which Azure Monitor capability collects guest OS metrics and logs from VMs?",
+    options: [
+      { id: "a", text: "Azure Monitor Agent (AMA) with Data Collection Rules" },
+      { id: "b", text: "Microsoft Monitoring Agent (MMA, retired)" },
+      { id: "c", text: "Azure Backup agent" },
+      { id: "d", text: "Network Watcher Agent" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "AMA replaces the legacy MMA and Telegraf; collection is configured via DCRs.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-056",
+    certId: "az-104",
+    domainId: "monitor-maintain",
+    type: "single",
+    question:
+      "Which Azure feature centrally manages OS updates across Azure and Arc-enabled servers?",
+    options: [
+      { id: "a", text: "Azure Update Manager" },
+      { id: "b", text: "Azure Backup" },
+      { id: "c", text: "Azure Site Recovery" },
+      { id: "d", text: "Azure Migrate" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Azure Update Manager replaces Azure Automation Update Management and supports multi-OS update orchestration.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-057",
+    certId: "az-104",
+    domainId: "monitor-maintain",
+    type: "single",
+    question:
+      "Which feature notifies subscribers about Azure service issues, planned maintenance, and health advisories?",
+    options: [
+      { id: "a", text: "Azure Service Health" },
+      { id: "b", text: "Azure Advisor" },
+      { id: "c", text: "Azure Resource Health" },
+      { id: "d", text: "Azure Backup" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Service Health surfaces issues affecting your services and supports alerting via action groups.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-058",
+    certId: "az-104",
+    domainId: "monitor-maintain",
+    type: "single",
+    question:
+      "Which Network Watcher feature captures packets from a VM for offline analysis?",
+    options: [
+      { id: "a", text: "Packet capture" },
+      { id: "b", text: "IP flow verify" },
+      { id: "c", text: "Connection troubleshoot" },
+      { id: "d", text: "Topology" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Network Watcher Packet Capture stores VM-level network captures to storage for analysis.",
+    difficulty: "medium",
+  },
+  {
+    id: "az104-059",
+    certId: "az-104",
+    domainId: "monitor-maintain",
+    type: "single",
+    question:
+      "Which Azure capability provides health metrics on a specific resource instance (e.g., is my VM available)?",
+    options: [
+      { id: "a", text: "Azure Resource Health" },
+      { id: "b", text: "Azure Service Health" },
+      { id: "c", text: "Azure Monitor Workbooks" },
+      { id: "d", text: "Cost Management" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Resource Health reports whether your specific resources are healthy or impacted.",
+    difficulty: "easy",
+  },
+  {
+    id: "az104-060",
+    certId: "az-104",
+    domainId: "monitor-maintain",
+    type: "single",
+    question:
+      "Which Azure tool tests recovery readiness with a planned failover for Azure Site Recovery?",
+    options: [
+      { id: "a", text: "Test failover" },
+      { id: "b", text: "Backup restore" },
+      { id: "c", text: "Recovery plan only" },
+      { id: "d", text: "Failback" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "ASR test failover validates DR runbooks without disrupting production.",
+    difficulty: "medium",
+  },
 ];
