@@ -1183,4 +1183,149 @@ export const sc900Questions: Question[] = [
       "The Service Trust Portal hosts independent audit reports and compliance documentation for Microsoft cloud services.",
     difficulty: "medium",
   },
+  // Additional study-guide gap fills
+  {
+    id: "sc900-066",
+    certId: "sc-900",
+    domainId: "entra",
+    type: "single",
+    question:
+      "Which Microsoft Entra identity types are recognized? (Choose the best answer.)",
+    options: [
+      { id: "a", text: "Users (member/guest), groups, devices, and workload identities (service principals/managed identities)" },
+      { id: "b", text: "Only users and groups" },
+      { id: "c", text: "Only computers" },
+      { id: "d", text: "Only mailboxes" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Entra identity types include users (member or guest), groups, devices, and workload identities (service principals and managed identities).",
+    difficulty: "easy",
+  },
+  {
+    id: "sc900-067",
+    certId: "sc-900",
+    domainId: "entra",
+    type: "single",
+    question:
+      "Which hybrid-identity authentication method validates passwords against on-premises Active Directory in real time without storing password hashes in the cloud?",
+    options: [
+      { id: "a", text: "Pass-through authentication (PTA)" },
+      { id: "b", text: "Password hash synchronization (PHS)" },
+      { id: "c", text: "Federation with AD FS" },
+      { id: "d", text: "B2B collaboration" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "PTA forwards authentication requests to on-prem AD via lightweight agents; PHS replicates password hashes; federation hands off to AD FS.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc900-068",
+    certId: "sc-900",
+    domainId: "azure-security",
+    type: "single",
+    question:
+      "Which Azure service inspects HTTP/HTTPS requests for OWASP top-10 attacks like SQL injection and XSS?",
+    options: [
+      { id: "a", text: "Azure Web Application Firewall (WAF) on Application Gateway or Front Door" },
+      { id: "b", text: "Azure Bastion" },
+      { id: "c", text: "Azure DDoS Protection" },
+      { id: "d", text: "Azure Private Link" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Azure WAF on Application Gateway (regional) or Front Door (global) protects web apps against common web exploits.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc900-069",
+    certId: "sc-900",
+    domainId: "azure-security",
+    type: "single",
+    question:
+      "Which Microsoft Defender capability discovers and prioritizes vulnerabilities and misconfigurations on endpoints?",
+    options: [
+      { id: "a", text: "Microsoft Defender Vulnerability Management" },
+      { id: "b", text: "Microsoft Defender for IoT" },
+      { id: "c", text: "Microsoft Sentinel only" },
+      { id: "d", text: "Compliance Manager only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Defender Vulnerability Management (built on the same engine as Defender for Endpoint) discovers, assesses, and prioritizes weaknesses across devices.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc900-070",
+    certId: "sc-900",
+    domainId: "azure-security",
+    type: "single",
+    question:
+      "Which Microsoft service provides a curated catalog of threat actors, campaigns, indicators, and articles for hunting and investigation?",
+    options: [
+      { id: "a", text: "Microsoft Defender Threat Intelligence (MDTI)" },
+      { id: "b", text: "Microsoft Sentinel watchlists only" },
+      { id: "c", text: "Microsoft Purview Audit (Standard)" },
+      { id: "d", text: "Microsoft Compliance Manager" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "MDTI delivers Microsoft's threat-actor profiles, IOCs, and intel articles, integrating with Defender XDR and Sentinel.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc900-071",
+    certId: "sc-900",
+    domainId: "purview",
+    type: "single",
+    question:
+      "Which Microsoft Purview capability formally declares content as a record so it cannot be edited or deleted before disposition?",
+    options: [
+      { id: "a", text: "Records management ('mark as a record' or 'regulatory record')" },
+      { id: "b", text: "Sensitivity labels only" },
+      { id: "c", text: "Communication compliance" },
+      { id: "d", text: "DLP policy" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Records management restricts edits and supports disposition reviews before deletion.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc900-072",
+    certId: "sc-900",
+    domainId: "purview",
+    type: "single",
+    question:
+      "Which Azure governance feature enforces 'allowed regions' or 'require tag' rules across resources?",
+    options: [
+      { id: "a", text: "Azure Policy (built-in or custom definitions)" },
+      { id: "b", text: "Resource locks only" },
+      { id: "c", text: "Cost Management budgets" },
+      { id: "d", text: "Service Health" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Azure Policy enforces and audits configuration including allowed regions and required tags.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc900-073",
+    certId: "sc-900",
+    domainId: "purview",
+    type: "single",
+    question:
+      "Which statement best summarizes Microsoft's published privacy principles?",
+    options: [
+      { id: "a", text: "Customer control, transparency, security, strong legal protections, no content-based targeting, and benefits to the customer" },
+      { id: "b", text: "Microsoft owns customer data and may use it freely" },
+      { id: "c", text: "Microsoft sells customer data to advertisers" },
+      { id: "d", text: "Customers cannot choose where data is stored" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft publishes six privacy principles emphasizing customer control, transparency, security, strong legal protections, no content-based targeting, and benefits to the customer.",
+    difficulty: "easy",
+  },
 ];
