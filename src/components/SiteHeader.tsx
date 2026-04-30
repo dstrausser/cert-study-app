@@ -36,7 +36,7 @@ export default function SiteHeader() {
         <nav className="flex items-center gap-2 text-sm">
           <Link
             href="/paths"
-            className="rounded-md px-2.5 py-1.5 hover:bg-muted/60 text-muted-foreground hover:text-foreground"
+            className="rounded-md px-2.5 py-1.5 text-muted-foreground hover:bg-muted/60 hover:text-foreground"
           >
             Learning Paths
           </Link>
@@ -46,7 +46,7 @@ export default function SiteHeader() {
             <div className="flex items-center gap-2">
               <Link
                 href="/account"
-                className="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 hover:bg-muted/60"
+                className="flex items-center gap-1.5 rounded-md px-2 py-1.5 hover:bg-muted/60"
               >
                 <UserIcon className="h-4 w-4" />
                 <span className="font-medium">{user.displayName}</span>
