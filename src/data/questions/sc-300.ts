@@ -458,4 +458,640 @@ export const sc300Questions: Question[] = [
       "PIM logs role activations and assignment changes to Entra audit logs, which can be exported to Sentinel.",
     difficulty: "medium",
   },
+  // Additional entra-identity coverage
+  {
+    id: "sc300-026",
+    certId: "sc-300",
+    domainId: "entra-identity",
+    type: "single",
+    question:
+      "Which Entra Connect Sync feature lets specific objects be excluded from synchronization based on attribute values?",
+    options: [
+      { id: "a", text: "Filtering (domain, OU, or attribute-based)" },
+      { id: "b", text: "Express settings only" },
+      { id: "c", text: "Federation with AD FS" },
+      { id: "d", text: "Cloud-only mode" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Entra Connect supports filtering by domain, OU, or attribute to control which objects sync to Entra ID.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-027",
+    certId: "sc-300",
+    domainId: "entra-identity",
+    type: "single",
+    question:
+      "Which lighter-weight alternative to Entra Connect Sync is recommended for new disconnected forests or simple scenarios?",
+    options: [
+      { id: "a", text: "Microsoft Entra Cloud Sync" },
+      { id: "b", text: "Azure AD Connect Health" },
+      { id: "c", text: "AD FS" },
+      { id: "d", text: "Microsoft Identity Manager" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Cloud Sync uses lightweight agents and is the recommended path for many new hybrid deployments.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-028",
+    certId: "sc-300",
+    domainId: "entra-identity",
+    type: "single",
+    question:
+      "Which Entra group type is recommended for assigning licenses, apps, and SharePoint/Teams collaboration?",
+    options: [
+      { id: "a", text: "Microsoft 365 group" },
+      { id: "b", text: "Distribution list" },
+      { id: "c", text: "Mail-enabled security group" },
+      { id: "d", text: "Dynamic device group" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft 365 groups support licensing, app assignment, Teams, SharePoint, and Outlook collaboration.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-029",
+    certId: "sc-300",
+    domainId: "entra-identity",
+    type: "single",
+    question:
+      "Which Entra capability automatically populates a group based on rules over user/device attributes?",
+    options: [
+      { id: "a", text: "Dynamic group membership" },
+      { id: "b", text: "Administrative units" },
+      { id: "c", text: "Tenant restrictions" },
+      { id: "d", text: "Self-service group management" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Dynamic groups use a membership rule (e.g., department -eq 'Sales') and require Entra ID P1.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-030",
+    certId: "sc-300",
+    domainId: "entra-identity",
+    type: "single",
+    question:
+      "Which Entra feature lets external partners sign in to your tenant with their own Entra account using Cross-Tenant Access settings?",
+    options: [
+      { id: "a", text: "B2B collaboration with Cross-tenant Access settings" },
+      { id: "b", text: "B2B direct connect only" },
+      { id: "c", text: "Tenant restrictions" },
+      { id: "d", text: "Entra External ID" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Cross-tenant Access settings centrally manage B2B inbound/outbound trust for guest collaboration.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-031",
+    certId: "sc-300",
+    domainId: "entra-identity",
+    type: "single",
+    question:
+      "Which Entra capability lets two tenants share Teams channels and files with native (non-guest) experience?",
+    options: [
+      { id: "a", text: "B2B direct connect" },
+      { id: "b", text: "Federation with AD FS" },
+      { id: "c", text: "B2C" },
+      { id: "d", text: "Tenant restrictions" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "B2B direct connect creates mutual trust so users from a partner tenant access Teams shared channels without guest accounts.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc300-032",
+    certId: "sc-300",
+    domainId: "entra-identity",
+    type: "single",
+    question:
+      "Which Entra device join state allows a personally-owned Windows device to access Microsoft 365 resources with conditional access?",
+    options: [
+      { id: "a", text: "Microsoft Entra registered (workplace join)" },
+      { id: "b", text: "Microsoft Entra joined" },
+      { id: "c", text: "Hybrid Microsoft Entra joined" },
+      { id: "d", text: "Workgroup" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Entra-registered (BYOD) gives a device an identity in Entra without making it corporate-managed.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-033",
+    certId: "sc-300",
+    domainId: "entra-identity",
+    type: "single",
+    question:
+      "Which Entra feature supports bulk import of users via CSV from the admin center?",
+    options: [
+      { id: "a", text: "Bulk operations (create/update/delete) in Entra admin center" },
+      { id: "b", text: "Identity Protection" },
+      { id: "c", text: "Privileged Identity Management" },
+      { id: "d", text: "Conditional Access" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Bulk operations support CSV templates for create/invite/delete of users in the admin center.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-034",
+    certId: "sc-300",
+    domainId: "entra-identity",
+    type: "single",
+    question:
+      "Which Entra capability presents an identity sign-in security baseline that Microsoft updates over time?",
+    options: [
+      { id: "a", text: "Security defaults" },
+      { id: "b", text: "Conditional Access named locations only" },
+      { id: "c", text: "Tenant restrictions" },
+      { id: "d", text: "Identity Protection" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Security defaults are a Microsoft-curated baseline (MFA, blocked legacy auth, protected admins).",
+    difficulty: "easy",
+  },
+
+  // Additional auth-access coverage
+  {
+    id: "sc300-035",
+    certId: "sc-300",
+    domainId: "auth-access",
+    type: "single",
+    question:
+      "Which Conditional Access assignment lets you target a policy to a specific group of users while excluding break-glass accounts?",
+    options: [
+      { id: "a", text: "Users and groups (include + exclude)" },
+      { id: "b", text: "Cloud apps only" },
+      { id: "c", text: "Conditions only" },
+      { id: "d", text: "Session controls" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Always include break-glass accounts in the exclusion list of Conditional Access policies to avoid lockout.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-036",
+    certId: "sc-300",
+    domainId: "auth-access",
+    type: "single",
+    question:
+      "Which Conditional Access session control lets you require periodic sign-in for sensitive apps like Microsoft 365 admin center?",
+    options: [
+      { id: "a", text: "Sign-in frequency" },
+      { id: "b", text: "Persistent browser session" },
+      { id: "c", text: "App enforced restrictions" },
+      { id: "d", text: "Continuous Access Evaluation" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Sign-in frequency forces re-auth at a configured interval to limit token longevity.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-037",
+    certId: "sc-300",
+    domainId: "auth-access",
+    type: "single",
+    question:
+      "Which Conditional Access feature revokes tokens in near real time when risk increases or sign-in policies change?",
+    options: [
+      { id: "a", text: "Continuous Access Evaluation (CAE)" },
+      { id: "b", text: "Sign-in frequency only" },
+      { id: "c", text: "Persistent browser session" },
+      { id: "d", text: "Smart lockout" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "CAE allows resource providers (Exchange, SharePoint, Teams, MS Graph) to react to revocation events quickly.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc300-038",
+    certId: "sc-300",
+    domainId: "auth-access",
+    type: "single",
+    question:
+      "Which Conditional Access grant control lets you require a Terms-of-Use acceptance before access?",
+    options: [
+      { id: "a", text: "Require terms of use" },
+      { id: "b", text: "Require approved client app" },
+      { id: "c", text: "Require app protection policy" },
+      { id: "d", text: "Block access" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Conditional Access can require users to accept a terms-of-use document, recorded for compliance.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-039",
+    certId: "sc-300",
+    domainId: "auth-access",
+    type: "single",
+    question:
+      "Which Conditional Access feature lets users access an app on iOS/Android only via Microsoft mobile apps with app protection policies?",
+    options: [
+      { id: "a", text: "Require app protection policy" },
+      { id: "b", text: "Require compliant device only" },
+      { id: "c", text: "Block legacy authentication" },
+      { id: "d", text: "Require persistent browser" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "App protection policy (MAM) keeps corporate data inside approved apps without enrolling the device.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-040",
+    certId: "sc-300",
+    domainId: "auth-access",
+    type: "single",
+    question:
+      "Which Entra feature blocks IP ranges or geographies from signing in?",
+    options: [
+      { id: "a", text: "Conditional Access named locations + block grant" },
+      { id: "b", text: "Tenant restrictions only" },
+      { id: "c", text: "Identity Protection only" },
+      { id: "d", text: "Smart lockout" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Named locations define IP ranges or countries; pair with a block policy to prevent sign-in from those locations.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-041",
+    certId: "sc-300",
+    domainId: "auth-access",
+    type: "single",
+    question:
+      "Which Entra feature provides a self-service interface for users to set up MFA methods, change passwords, and manage devices?",
+    options: [
+      { id: "a", text: "My Account portal (myaccount.microsoft.com)" },
+      { id: "b", text: "Azure portal" },
+      { id: "c", text: "Microsoft 365 admin center" },
+      { id: "d", text: "Defender portal" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "My Account is the user-facing portal for security info, devices, organizations, and password.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-042",
+    certId: "sc-300",
+    domainId: "auth-access",
+    type: "single",
+    question:
+      "Which Entra capability provides a unified policy for available authentication methods across MFA, SSPR, and sign-in?",
+    options: [
+      { id: "a", text: "Authentication methods policy" },
+      { id: "b", text: "Conditional Access" },
+      { id: "c", text: "PIM" },
+      { id: "d", text: "Smart lockout policy" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "The authentication methods policy replaces the older legacy MFA and SSPR per-feature settings with one unified policy.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-043",
+    certId: "sc-300",
+    domainId: "auth-access",
+    type: "single",
+    question:
+      "Which feature requires a verifying user to match a number shown on a sign-in screen with the Microsoft Authenticator app?",
+    options: [
+      { id: "a", text: "Number matching" },
+      { id: "b", text: "Voice call OTP" },
+      { id: "c", text: "Push notification (legacy)" },
+      { id: "d", text: "SMS OTP" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Number matching mitigates MFA fatigue by requiring the user to type a number shown by the requesting app.",
+    difficulty: "medium",
+  },
+  // Additional app-access coverage
+  {
+    id: "sc300-044",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which Entra ID app integration option is recommended for SaaS apps that natively support OAuth 2.0 / OIDC?",
+    options: [
+      { id: "a", text: "Add the app from the Entra application gallery and configure SSO" },
+      { id: "b", text: "Application proxy only" },
+      { id: "c", text: "Federation with AD FS" },
+      { id: "d", text: "Password-based SSO only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "The Entra app gallery contains pre-integrated SaaS apps for OAuth/OIDC/SAML SSO with documented setup.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-045",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which Entra capability provisions and de-provisions accounts in supported SaaS apps automatically?",
+    options: [
+      { id: "a", text: "User provisioning (SCIM-based or app-specific)" },
+      { id: "b", text: "Self-service password reset" },
+      { id: "c", text: "Identity Protection" },
+      { id: "d", text: "Conditional Access" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Entra automated provisioning syncs identities and access into target SaaS apps via SCIM or vendor APIs.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-046",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which Entra capability lets you delegate administration of an enterprise application's role assignments without granting tenant-wide rights?",
+    options: [
+      { id: "a", text: "Application owner / Cloud Application Administrator scoped to the app" },
+      { id: "b", text: "Global Administrator" },
+      { id: "c", text: "User Access Administrator" },
+      { id: "d", text: "Reports Reader" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Application owners and the Cloud Application Administrator role can manage app-specific assignments and configuration.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-047",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which Entra ID feature blocks enterprise apps registered without admin approval?",
+    options: [
+      { id: "a", text: "Restrict user consent and require admin consent for non-Microsoft apps" },
+      { id: "b", text: "Disable application registrations entirely (rarely advisable)" },
+      { id: "c", text: "Tenant restrictions" },
+      { id: "d", text: "Conditional Access named locations" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "User consent settings and the admin consent workflow channel risky permissions through admin approval.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-048",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which Entra capability applies Conditional Access to non-Microsoft cloud apps via a reverse-proxy?",
+    options: [
+      { id: "a", text: "Conditional Access App Control with Defender for Cloud Apps" },
+      { id: "b", text: "Application proxy" },
+      { id: "c", text: "B2B direct connect" },
+      { id: "d", text: "Cross-tenant access settings" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Conditional Access App Control routes sessions through Defender for Cloud Apps to enforce session controls.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc300-049",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which Entra setting prevents users from registering new applications in your tenant?",
+    options: [
+      { id: "a", text: "Users can register applications = No (in user settings)" },
+      { id: "b", text: "Disable Conditional Access" },
+      { id: "c", text: "Block legacy authentication" },
+      { id: "d", text: "Enable Identity Protection" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "The user settings 'Users can register applications' setting limits app registrations to admins.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-050",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which Entra feature lets administrators see and revoke OAuth permissions granted to multi-tenant apps?",
+    options: [
+      { id: "a", text: "Enterprise applications -> Permissions / Consent and permissions" },
+      { id: "b", text: "Identity Protection only" },
+      { id: "c", text: "Conditional Access only" },
+      { id: "d", text: "Audit log only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Admins can review delegated and application permissions per enterprise app and revoke consent if needed.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-051",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which Application Proxy authentication method provides SSO for legacy on-premises web apps using Kerberos delegation?",
+    options: [
+      { id: "a", text: "Integrated Windows Authentication (KCD)" },
+      { id: "b", text: "Header-based SSO" },
+      { id: "c", text: "Password-based SSO" },
+      { id: "d", text: "Linked sign-on" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "App Proxy supports IWA via Kerberos Constrained Delegation for legacy web apps.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc300-052",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which type of Entra app registration credential is preferred over a long-lived client secret?",
+    options: [
+      { id: "a", text: "Certificate or federated credential" },
+      { id: "b", text: "Plain password" },
+      { id: "c", text: "Bearer token" },
+      { id: "d", text: "API key in code" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Certificates and federated credentials (OIDC) are preferred to client secrets for security and rotation.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-053",
+    certId: "sc-300",
+    domainId: "app-access",
+    type: "single",
+    question:
+      "Which Entra feature lets you discover apps that are not yet centrally managed and bring them under SSO governance?",
+    options: [
+      { id: "a", text: "Defender for Cloud Apps Cloud Discovery, then 'Sanction' and integrate with Entra SSO" },
+      { id: "b", text: "Tenant restrictions only" },
+      { id: "c", text: "Workbooks in Sentinel" },
+      { id: "d", text: "Identity Protection" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Cloud Discovery surfaces shadow IT; sanction those that are appropriate and onboard them to Entra SSO.",
+    difficulty: "hard",
+  },
+
+  // Additional id-governance coverage
+  {
+    id: "sc300-054",
+    certId: "sc-300",
+    domainId: "id-governance",
+    type: "single",
+    question:
+      "Which entitlement-management object packages resources, policies, and approvers into a single requestable unit?",
+    options: [
+      { id: "a", text: "Access package" },
+      { id: "b", text: "PIM eligible role" },
+      { id: "c", text: "Watchlist" },
+      { id: "d", text: "Conditional Access policy" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Access packages bundle groups, apps, and SharePoint sites with approval/expiration policies.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-055",
+    certId: "sc-300",
+    domainId: "id-governance",
+    type: "single",
+    question:
+      "Which entitlement-management feature lets external partners request access to specific resources in your tenant?",
+    options: [
+      { id: "a", text: "Connected organizations + access packages with external policy" },
+      { id: "b", text: "B2B direct connect" },
+      { id: "c", text: "Tenant restrictions" },
+      { id: "d", text: "Smart lockout" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Connected organizations and external user policies allow guests to request and receive access via packages.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-056",
+    certId: "sc-300",
+    domainId: "id-governance",
+    type: "single",
+    question:
+      "Which PIM feature requires an approver before a user can activate a specific eligible role assignment?",
+    options: [
+      { id: "a", text: "Activation requires approval (with selected approvers)" },
+      { id: "b", text: "Just-in-time without approval" },
+      { id: "c", text: "Permanent active assignment" },
+      { id: "d", text: "Auditing only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "PIM role settings can mandate one or more approvers as a step in role activation.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc300-057",
+    certId: "sc-300",
+    domainId: "id-governance",
+    type: "single",
+    question:
+      "Which lifecycle workflow trigger fires when an employee's department changes (mover scenario)?",
+    options: [
+      { id: "a", text: "Mover workflow on attribute change" },
+      { id: "b", text: "Joiner workflow on hire date" },
+      { id: "c", text: "Leaver workflow on termination" },
+      { id: "d", text: "On-demand activation" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Lifecycle workflows include joiner, mover, and leaver triggers; mover handles transfers and role changes.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-058",
+    certId: "sc-300",
+    domainId: "id-governance",
+    type: "single",
+    question:
+      "Which Entra feature pulls audit, sign-in, and provisioning logs into a Log Analytics workspace?",
+    options: [
+      { id: "a", text: "Diagnostic settings on the tenant (route logs to Azure Monitor)" },
+      { id: "b", text: "Privileged Identity Management" },
+      { id: "c", text: "Identity Protection" },
+      { id: "d", text: "Conditional Access" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Tenant diagnostic settings stream Entra logs to Log Analytics, storage, or Event Hub for retention and SIEM.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc300-059",
+    certId: "sc-300",
+    domainId: "id-governance",
+    type: "single",
+    question:
+      "Which PIM Activation setting helps mitigate MFA fatigue by requiring authentication strength rather than legacy MFA prompt?",
+    options: [
+      { id: "a", text: "Require Entra Conditional Access authentication context with phishing-resistant strength" },
+      { id: "b", text: "Disable MFA during activation" },
+      { id: "c", text: "Allow only password" },
+      { id: "d", text: "Require Approval only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "PIM authentication context can enforce phishing-resistant authentication strength on role activation.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc300-060",
+    certId: "sc-300",
+    domainId: "id-governance",
+    type: "single",
+    question:
+      "Which report best demonstrates that privileged role activations are auditable for compliance?",
+    options: [
+      { id: "a", text: "PIM activity history and resource audit log" },
+      { id: "b", text: "Sign-in logs only" },
+      { id: "c", text: "Workbook gallery" },
+      { id: "d", text: "Microsoft Defender XDR alerts" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "PIM logs all activations with reason and approver, viewable in PIM and Entra audit logs.",
+    difficulty: "easy",
+  },
 ];
