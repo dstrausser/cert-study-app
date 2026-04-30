@@ -368,4 +368,730 @@ export const ms900Questions: Question[] = [
       "Microsoft 365 uses a per-user, per-month subscription model. Organizations pay a monthly fee per user and can choose from various plans based on their needs. Subscriptions can be paid monthly or annually.",
     difficulty: "easy",
   },
+  // Additional cloud-concepts coverage
+  {
+    id: "ms900-021",
+    certId: "ms-900",
+    domainId: "cloud-concepts",
+    type: "single",
+    question:
+      "Which Microsoft 365 deployment topology hosts services in Microsoft datacenters and is the most common?",
+    options: [
+      { id: "a", text: "Cloud (multi-tenant)" },
+      { id: "b", text: "On-premises" },
+      { id: "c", text: "Hybrid" },
+      { id: "d", text: "Private cloud" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft 365 is delivered as a multi-tenant cloud service.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-022",
+    certId: "ms-900",
+    domainId: "cloud-concepts",
+    type: "single",
+    question:
+      "Which cloud benefit lets organizations pay only for what they use without large upfront hardware costs?",
+    options: [
+      { id: "a", text: "Consumption-based pricing (OpEx)" },
+      { id: "b", text: "CapEx hardware purchase" },
+      { id: "c", text: "Perpetual licensing" },
+      { id: "d", text: "Volume licensing" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Consumption-based pricing converts CapEx into OpEx, billing only for what you use.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-023",
+    certId: "ms-900",
+    domainId: "cloud-concepts",
+    type: "single",
+    question:
+      "Which deployment lets an organization keep some workloads on-premises while integrating with Microsoft 365 cloud services?",
+    options: [
+      { id: "a", text: "Hybrid" },
+      { id: "b", text: "Public" },
+      { id: "c", text: "Private" },
+      { id: "d", text: "Community" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Hybrid combines on-prem and cloud, common with Exchange Hybrid or hybrid identity.",
+    difficulty: "easy",
+  },
+
+  // Additional m365-apps-services coverage
+  {
+    id: "ms900-024",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft Teams capability lets users collaborate in dedicated topic-based spaces with chat, files, and apps?",
+    options: [
+      { id: "a", text: "Channels (within a Team)" },
+      { id: "b", text: "Distribution lists" },
+      { id: "c", text: "SharePoint hubs" },
+      { id: "d", text: "OneNote sections" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Channels organize a Team into focused spaces; each is backed by SharePoint and Outlook.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-025",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 service hosts mailboxes and calendars in the cloud?",
+    options: [
+      { id: "a", text: "Exchange Online" },
+      { id: "b", text: "OneDrive for Business" },
+      { id: "c", text: "Microsoft Loop" },
+      { id: "d", text: "Microsoft Stream" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Exchange Online provides mailboxes, calendar, and contacts as a cloud service.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-026",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which service is the personal cloud storage for Microsoft 365 users?",
+    options: [
+      { id: "a", text: "OneDrive for Business" },
+      { id: "b", text: "SharePoint Online" },
+      { id: "c", text: "Microsoft Lists" },
+      { id: "d", text: "Power BI" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "OneDrive provides per-user cloud storage with sync, sharing, and Office integration.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-027",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which service is the team-based document and intranet platform for Microsoft 365?",
+    options: [
+      { id: "a", text: "SharePoint Online" },
+      { id: "b", text: "OneDrive" },
+      { id: "c", text: "Yammer (Viva Engage)" },
+      { id: "d", text: "Microsoft Stream" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "SharePoint Online hosts team and communication sites and is the storage backend for Teams.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-028",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 service is the modern enterprise social platform (formerly Yammer)?",
+    options: [
+      { id: "a", text: "Microsoft Viva Engage" },
+      { id: "b", text: "Microsoft Loop" },
+      { id: "c", text: "Microsoft Teams" },
+      { id: "d", text: "Microsoft Forms" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Viva Engage is the rebranded Yammer enterprise social platform within Microsoft 365.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-029",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 service helps employees stay focused, set boundaries, and improve well-being with personalized insights?",
+    options: [
+      { id: "a", text: "Microsoft Viva Insights" },
+      { id: "b", text: "Microsoft Stream" },
+      { id: "c", text: "Microsoft Forms" },
+      { id: "d", text: "Microsoft Sway" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Viva Insights gives employees and managers data-driven productivity and well-being insights.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-030",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft Viva module curates an organization's knowledge across Microsoft 365 with AI?",
+    options: [
+      { id: "a", text: "Microsoft Viva Topics" },
+      { id: "b", text: "Microsoft Loop" },
+      { id: "c", text: "Microsoft Teams Live Events" },
+      { id: "d", text: "Microsoft Forms" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Viva Topics surfaces organizational knowledge using AI; Microsoft 365 Copilot extends this further.",
+    difficulty: "medium",
+  },
+  {
+    id: "ms900-031",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 service offers AI assistance embedded in Word, Excel, PowerPoint, Outlook, and Teams?",
+    options: [
+      { id: "a", text: "Microsoft 365 Copilot" },
+      { id: "b", text: "Microsoft Sentinel" },
+      { id: "c", text: "Microsoft Viva Goals" },
+      { id: "d", text: "Microsoft Defender for Office 365" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft 365 Copilot integrates generative AI across Microsoft 365 apps using your tenant data.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-032",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 service is the unified low-code platform for apps, automations, agents, and analytics?",
+    options: [
+      { id: "a", text: "Microsoft Power Platform" },
+      { id: "b", text: "Microsoft Endpoint Manager" },
+      { id: "c", text: "Microsoft Defender XDR" },
+      { id: "d", text: "Microsoft Purview" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Power Platform = Power Apps, Power Automate, Power BI, Copilot Studio, Power Pages.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-033",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft service provides cross-platform device management for Windows, macOS, iOS, Android, and Linux?",
+    options: [
+      { id: "a", text: "Microsoft Intune (Microsoft Endpoint Manager)" },
+      { id: "b", text: "Microsoft Defender for Endpoint" },
+      { id: "c", text: "Microsoft Sentinel" },
+      { id: "d", text: "Microsoft Purview" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Intune (Endpoint Manager) is the cross-platform UEM service for endpoints and apps.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-034",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Windows licensing option in Microsoft 365 includes Windows 11 Enterprise + cloud configuration tools?",
+    options: [
+      { id: "a", text: "Windows 11 Enterprise E3/E5 (in Microsoft 365 E3/E5)" },
+      { id: "b", text: "Windows 11 Home" },
+      { id: "c", text: "Windows 11 Pro for Workstations" },
+      { id: "d", text: "Windows Server" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft 365 E3/E5 include Windows 11 Enterprise rights and cloud-managed deployment.",
+    difficulty: "medium",
+  },
+  {
+    id: "ms900-035",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft service streams desktops and apps from Azure to any device?",
+    options: [
+      { id: "a", text: "Windows 365 / Azure Virtual Desktop" },
+      { id: "b", text: "Microsoft Sentinel" },
+      { id: "c", text: "Microsoft Loop" },
+      { id: "d", text: "Microsoft Stream" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Windows 365 (Cloud PC) and AVD provide desktop-as-a-service from Azure.",
+    difficulty: "medium",
+  },
+  {
+    id: "ms900-036",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 deployment type installs Office apps to a user's device and updates from the cloud?",
+    options: [
+      { id: "a", text: "Microsoft 365 Apps (formerly Office 365 ProPlus)" },
+      { id: "b", text: "Office Web Apps only" },
+      { id: "c", text: "Office for Mac standalone" },
+      { id: "d", text: "Office LTSC" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft 365 Apps installs Word/Excel/PowerPoint/etc. and updates via the click-to-run service.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-037",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 deployment type provides a perpetual, locked-version Office install for offline scenarios?",
+    options: [
+      { id: "a", text: "Office LTSC" },
+      { id: "b", text: "Microsoft 365 Apps" },
+      { id: "c", text: "Microsoft 365 Web" },
+      { id: "d", text: "Office Mobile" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Office LTSC (Long-Term Servicing Channel) is a perpetual-license Office for specialty scenarios.",
+    difficulty: "medium",
+  },
+  {
+    id: "ms900-038",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft service unifies search across mail, files, people, and Teams?",
+    options: [
+      { id: "a", text: "Microsoft Search" },
+      { id: "b", text: "Power BI" },
+      { id: "c", text: "Microsoft Lists" },
+      { id: "d", text: "Microsoft Forms" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft Search delivers unified, personalized search across Microsoft 365 services.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-039",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 collaborative canvas brings together components like tables and tasks across apps?",
+    options: [
+      { id: "a", text: "Microsoft Loop" },
+      { id: "b", text: "Microsoft Stream" },
+      { id: "c", text: "Microsoft Lists" },
+      { id: "d", text: "Microsoft Sway" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Loop offers components and pages that update across Outlook, Teams, OneNote, and other Microsoft 365 surfaces.",
+    difficulty: "medium",
+  },
+  {
+    id: "ms900-040",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 service lets you create lists, track tasks, and design lightweight workflows?",
+    options: [
+      { id: "a", text: "Microsoft Lists" },
+      { id: "b", text: "Microsoft Loop" },
+      { id: "c", text: "Power BI" },
+      { id: "d", text: "Microsoft Sway" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft Lists lets users track structured data with views, rules, and automation.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-041",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft Teams meetings capability supports very large one-to-many broadcasts?",
+    options: [
+      { id: "a", text: "Microsoft Teams Live Events / Town Halls" },
+      { id: "b", text: "Microsoft Stream channel" },
+      { id: "c", text: "Microsoft Forms" },
+      { id: "d", text: "Microsoft Lists" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Live Events / Town Halls support large-scale, one-to-many streaming meetings.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-042",
+    certId: "ms-900",
+    domainId: "m365-apps-services",
+    type: "single",
+    question:
+      "Which Microsoft 365 platform unifies video upload, sharing, and embedding across the suite?",
+    options: [
+      { id: "a", text: "Microsoft Stream (on SharePoint)" },
+      { id: "b", text: "Microsoft Sway" },
+      { id: "c", text: "Microsoft Loop" },
+      { id: "d", text: "Microsoft Lists" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Stream now stores videos in OneDrive/SharePoint with native sharing and Teams integration.",
+    difficulty: "easy",
+  },
+  // Additional security-compliance coverage
+  {
+    id: "ms900-043",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which Microsoft Defender XDR product protects against email phishing and malicious attachments?",
+    options: [
+      { id: "a", text: "Microsoft Defender for Office 365" },
+      { id: "b", text: "Microsoft Defender for Endpoint" },
+      { id: "c", text: "Microsoft Defender for Identity" },
+      { id: "d", text: "Microsoft Defender for Cloud Apps" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Defender for Office 365 provides Safe Links, Safe Attachments, and anti-phishing for Exchange/Teams.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-044",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which Microsoft 365 product helps discover, classify, label, and protect sensitive content?",
+    options: [
+      { id: "a", text: "Microsoft Purview Information Protection" },
+      { id: "b", text: "Microsoft Sentinel" },
+      { id: "c", text: "Microsoft Defender for Endpoint" },
+      { id: "d", text: "Microsoft Intune" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Purview Information Protection delivers sensitivity labels, classifiers, and DLP for Microsoft 365 data.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-045",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which feature enforces MFA on user sign-in only when a sign-in is risky?",
+    options: [
+      { id: "a", text: "Conditional Access with Identity Protection" },
+      { id: "b", text: "Smart lockout" },
+      { id: "c", text: "Tenant restrictions" },
+      { id: "d", text: "Self-service password reset" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "CA combined with Identity Protection risk signals enables risk-based MFA enforcement.",
+    difficulty: "medium",
+  },
+  {
+    id: "ms900-046",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which feature in Microsoft 365 lets users reset their own passwords with verification methods?",
+    options: [
+      { id: "a", text: "Self-service password reset (SSPR)" },
+      { id: "b", text: "Privileged Identity Management" },
+      { id: "c", text: "Identity Protection only" },
+      { id: "d", text: "Conditional Access" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "SSPR allows users to reset/unlock their account using registered methods.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-047",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which Microsoft Purview tool helps organizations track and improve compliance posture against standards like ISO 27001?",
+    options: [
+      { id: "a", text: "Compliance Manager" },
+      { id: "b", text: "Records management" },
+      { id: "c", text: "Communication compliance" },
+      { id: "d", text: "DLP" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Compliance Manager calculates a Compliance Score and tracks improvement actions against standards.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-048",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which Microsoft service detects and investigates risky activities by employees, such as data exfiltration?",
+    options: [
+      { id: "a", text: "Microsoft Purview Insider Risk Management" },
+      { id: "b", text: "Microsoft Defender for Endpoint" },
+      { id: "c", text: "Microsoft Sentinel only" },
+      { id: "d", text: "Microsoft Intune" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Insider Risk Management detects risky internal activity and supports investigation workflows.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-049",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which Microsoft service hosts independent audit reports (SOC, ISO) and other trust documents for cloud services?",
+    options: [
+      { id: "a", text: "Service Trust Portal" },
+      { id: "b", text: "Microsoft 365 admin center" },
+      { id: "c", text: "Compliance Manager" },
+      { id: "d", text: "Defender for Cloud" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Service Trust Portal hosts independent compliance reports and tools for Microsoft cloud services.",
+    difficulty: "medium",
+  },
+  {
+    id: "ms900-050",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which Microsoft service provides a cloud-native SIEM for Microsoft 365 and beyond?",
+    options: [
+      { id: "a", text: "Microsoft Sentinel" },
+      { id: "b", text: "Microsoft Defender for Cloud" },
+      { id: "c", text: "Microsoft Purview" },
+      { id: "d", text: "Microsoft Intune" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft Sentinel is the cloud-native SIEM/SOAR platform.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-051",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which Microsoft service provides time-bound, approval-based activation of administrative roles?",
+    options: [
+      { id: "a", text: "Microsoft Entra Privileged Identity Management (PIM)" },
+      { id: "b", text: "Identity Protection" },
+      { id: "c", text: "Compliance Manager" },
+      { id: "d", text: "Self-service password reset" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "PIM provides JIT, time-bound, approval-based activation for Entra and Azure roles.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-052",
+    certId: "ms-900",
+    domainId: "security-compliance",
+    type: "single",
+    question:
+      "Which Microsoft Purview feature preserves Microsoft 365 content and supports legal investigations?",
+    options: [
+      { id: "a", text: "eDiscovery" },
+      { id: "b", text: "Sensitivity labels" },
+      { id: "c", text: "Communication compliance" },
+      { id: "d", text: "Audit (Standard)" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "eDiscovery (Standard/Premium) supports legal hold, search, review, and export.",
+    difficulty: "easy",
+  },
+
+  // Additional m365-pricing-support coverage
+  {
+    id: "ms900-053",
+    certId: "ms-900",
+    domainId: "m365-pricing-support",
+    type: "single",
+    question:
+      "Which Microsoft 365 plan includes everything in E3 plus advanced security, compliance, voice, and analytics?",
+    options: [
+      { id: "a", text: "Microsoft 365 E5" },
+      { id: "b", text: "Microsoft 365 Business Basic" },
+      { id: "c", text: "Microsoft 365 F3" },
+      { id: "d", text: "Office 365 E1" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft 365 E5 is the top enterprise plan with security, compliance, voice (Teams Phone), and Power BI Pro.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-054",
+    certId: "ms-900",
+    domainId: "m365-pricing-support",
+    type: "single",
+    question:
+      "Which Microsoft 365 plan is the standard small/medium business plan with desktop apps and Exchange?",
+    options: [
+      { id: "a", text: "Microsoft 365 Business Standard" },
+      { id: "b", text: "Microsoft 365 Business Basic" },
+      { id: "c", text: "Microsoft 365 E3" },
+      { id: "d", text: "Microsoft 365 F1" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Business Standard includes desktop Office apps and Exchange Online; Business Basic is web-only.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-055",
+    certId: "ms-900",
+    domainId: "m365-pricing-support",
+    type: "single",
+    question:
+      "Which Microsoft 365 SKU suffix (E3 vs E5 etc.) is best chosen for an enterprise needing Defender for Endpoint Plan 2?",
+    options: [
+      { id: "a", text: "Microsoft 365 E5 (or add Defender for Endpoint P2 to E3)" },
+      { id: "b", text: "Microsoft 365 Business Basic" },
+      { id: "c", text: "Microsoft 365 F1" },
+      { id: "d", text: "Office 365 A1" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "E5 includes Defender for Endpoint Plan 2; otherwise add the standalone Defender for Endpoint P2 license.",
+    difficulty: "medium",
+  },
+  {
+    id: "ms900-056",
+    certId: "ms-900",
+    domainId: "m365-pricing-support",
+    type: "single",
+    question:
+      "Which support feature lets organizations open Microsoft 365 cases by phone, email, or web 24/7?",
+    options: [
+      { id: "a", text: "Microsoft 365 admin center support requests" },
+      { id: "b", text: "Service Trust Portal" },
+      { id: "c", text: "Microsoft Learn" },
+      { id: "d", text: "Compliance Manager" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "The admin center hosts the support request workflow for tenants.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-057",
+    certId: "ms-900",
+    domainId: "m365-pricing-support",
+    type: "single",
+    question:
+      "Which feature lets you compare Microsoft 365 plans and licensing entitlements?",
+    options: [
+      { id: "a", text: "Microsoft 365 plan comparison and licensing pages" },
+      { id: "b", text: "Service Trust Portal" },
+      { id: "c", text: "Microsoft Learn" },
+      { id: "d", text: "Compliance Manager" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft publishes plan comparison and feature matrices to help select the right SKU.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-058",
+    certId: "ms-900",
+    domainId: "m365-pricing-support",
+    type: "single",
+    question:
+      "Which Microsoft 365 commitment type usually offers a discount in exchange for an annual term?",
+    options: [
+      { id: "a", text: "Annual subscription billed monthly or annually" },
+      { id: "b", text: "Pay-as-you-go" },
+      { id: "c", text: "Open license" },
+      { id: "d", text: "OEM license" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Annual commitments are typical and often include a discount over monthly-only commitments.",
+    difficulty: "easy",
+  },
+  {
+    id: "ms900-059",
+    certId: "ms-900",
+    domainId: "m365-pricing-support",
+    type: "single",
+    question:
+      "Which Microsoft 365 service-level agreement (SLA) covers Microsoft 365 services and provides credit if availability drops below the target?",
+    options: [
+      { id: "a", text: "Microsoft Online Services SLA (financially backed)" },
+      { id: "b", text: "Microsoft Trust Center" },
+      { id: "c", text: "Microsoft Compliance Manager" },
+      { id: "d", text: "Microsoft Defender for Cloud" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft offers a financially-backed SLA for online services with service credits.",
+    difficulty: "medium",
+  },
+  {
+    id: "ms900-060",
+    certId: "ms-900",
+    domainId: "m365-pricing-support",
+    type: "single",
+    question:
+      "Which Microsoft 365 service rollout phase exposes new features to opted-in users before broad release?",
+    options: [
+      { id: "a", text: "Targeted release (Microsoft 365 release options)" },
+      { id: "b", text: "Standard release only" },
+      { id: "c", text: "Preview only" },
+      { id: "d", text: "GA only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Targeted release lets early adopters try features before standard release across the tenant.",
+    difficulty: "medium",
+  },
 ];
