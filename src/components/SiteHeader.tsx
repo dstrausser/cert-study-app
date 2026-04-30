@@ -18,13 +18,18 @@ export default function SiteHeader() {
   }
 
   return (
-    <header className="border-b bg-card">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-blue-600 text-white">
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 supports-[backdrop-filter]:bg-background/85 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="rounded-md border border-primary/15 bg-primary/10 p-1.5 text-primary">
             <GraduationCap className="h-5 w-5" />
           </div>
-          <span className="font-semibold">CertStudy</span>
+          <div className="flex flex-col leading-none">
+            <span className="text-[15px] font-semibold tracking-tight">CertStudy</span>
+            <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Certification Intelligence Platform
+            </span>
+          </div>
         </Link>
         <nav className="flex items-center gap-2 text-sm">
           <Link
