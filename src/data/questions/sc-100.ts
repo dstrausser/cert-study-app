@@ -1000,4 +1000,95 @@ export const sc100Questions: Question[] = [
       "The first step in incident response is to triage the alert and assess the scope and impact. This determines the severity, affected resources, and appropriate response actions before containment and eradication.",
     difficulty: "easy",
   },
+  // Final coverage round-up across all five domains
+  {
+    id: "sc100-056",
+    certId: "sc-100",
+    domainId: "zero-trust",
+    type: "single",
+    question:
+      "When designing a Zero Trust architecture, which control plane is the primary signal source for access decisions across cloud apps, data, and infrastructure?",
+    options: [
+      { id: "a", text: "Identity (Microsoft Entra) feeding Conditional Access" },
+      { id: "b", text: "Perimeter firewall logs only" },
+      { id: "c", text: "On-premises Active Directory only" },
+      { id: "d", text: "VPN concentrators" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Zero Trust treats identity as the primary control plane; signals from Entra and Identity Protection drive Conditional Access policies that gate access.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc100-057",
+    certId: "sc-100",
+    domainId: "grc",
+    type: "single",
+    question:
+      "Which Microsoft platforms together support continuous evaluation against frameworks like NIST CSF or PCI DSS for an enterprise security strategy?",
+    options: [
+      { id: "a", text: "Microsoft Purview Compliance Manager + Defender for Cloud regulatory compliance dashboard" },
+      { id: "b", text: "Microsoft Sentinel only" },
+      { id: "c", text: "Microsoft Intune only" },
+      { id: "d", text: "Microsoft 365 admin center only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Compliance Manager scores M365/SaaS posture against frameworks; Defender for Cloud's regulatory compliance dashboard handles cloud workloads.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc100-058",
+    certId: "sc-100",
+    domainId: "infrastructure",
+    type: "single",
+    question:
+      "In an SC-100 design for hybrid infrastructure, how should privileged access to domain controllers be governed?",
+    options: [
+      { id: "a", text: "Privileged Access Workstations (PAW) + tiered admin model with PIM-managed cloud roles" },
+      { id: "b", text: "Allow all admins to RDP from corporate laptops" },
+      { id: "c", text: "Use shared local-admin accounts" },
+      { id: "d", text: "Disable MFA for admins for convenience" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft's enterprise access model uses tiered admin separation, PAWs, and JIT activation to protect identity infrastructure.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc100-059",
+    certId: "sc-100",
+    domainId: "data-apps",
+    type: "single",
+    question:
+      "Which Zero Trust principle is best applied to APIs published by an enterprise to partners?",
+    options: [
+      { id: "a", text: "Verify explicitly + least privilege via OAuth scopes, mTLS, and Microsoft Entra workload identities" },
+      { id: "b", text: "Trust internal partner networks implicitly" },
+      { id: "c", text: "Use IP allowlisting only without authentication" },
+      { id: "d", text: "Disable rate limiting" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "APIs should authenticate every call (mTLS, OAuth) with least-privilege scopes; Entra workload identities support this.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc100-060",
+    certId: "sc-100",
+    domainId: "best-practices",
+    type: "single",
+    question:
+      "Which Microsoft framework should an SC-100 architect cite to align a security strategy with Microsoft's own reference architecture?",
+    options: [
+      { id: "a", text: "Microsoft Cybersecurity Reference Architectures (MCRA) + Microsoft Cloud Security Benchmark (MCSB)" },
+      { id: "b", text: "ISO 9001 only" },
+      { id: "c", text: "ITIL v3" },
+      { id: "d", text: "PMBOK" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "MCRA and MCSB are the canonical Microsoft references SC-100 expects you to align design recommendations with.",
+    difficulty: "medium",
+  },
 ];
