@@ -14,32 +14,34 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <section className="border-b border-border/70 bg-gradient-to-b from-background via-background to-muted/30">
-        <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-14 md:grid-cols-[1.45fr_1fr] md:items-end">
-          <div>
-            <span className="mb-4 inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
-              Enterprise-aligned cloud and security certification prep
-            </span>
-            <h1 className="text-3xl font-bold tracking-tight">
-              {user
-                ? `Welcome back, ${user.displayName}`
-                : "Master your IT certifications"}
-            </h1>
-            <p className="text-muted-foreground mt-2 max-w-2xl">
-              Practice exams, flashcards, and AI-powered explanations covering
-              Azure security, identity, compliance, and operations.
-              {!user && " Create an account to track progress across devices."}
-            </p>
-          </div>
-          <div className="rounded-xl border border-border/70 bg-card p-5 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-              Why teams choose CertStudy
-            </p>
-            <ul className="mt-3 space-y-2 text-sm text-foreground">
-              <li>Structured exam domains across major Azure certifications</li>
-              <li>Progress indicators for repeatable, measurable upskilling</li>
-              <li>Learning paths that map to security-focused role goals</li>
-            </ul>
+      <section className="border-b border-border/60 bg-gradient-to-b from-background to-muted/20">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-14">
+          <span className="mb-4 inline-flex items-center rounded-full border border-border bg-muted/40 px-3 py-1 text-xs font-medium text-foreground">
+            Azure & Security Certification Prep
+          </span>
+          <h1 className="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
+            {user
+              ? `Welcome back, ${user.displayName}`
+              : "Master your IT certifications"}
+          </h1>
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground md:text-lg">
+            Practice exams, flashcards, and AI-powered explanations covering
+            Azure security, identity, compliance, and operations.
+            {!user && " Create an account to track progress across devices."}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/paths"
+              className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            >
+              View Learning Paths
+            </Link>
+            <Link
+              href="/az-500"
+              className="inline-flex h-9 items-center rounded-md px-4 text-sm font-medium text-foreground hover:bg-muted/60"
+            >
+              Start Practice Exam
+            </Link>
           </div>
         </div>
       </section>
