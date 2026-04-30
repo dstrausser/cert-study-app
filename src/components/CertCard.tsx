@@ -82,11 +82,11 @@ export default function CertCard({ cert }: { cert: Certification }) {
 
   return (
     <Link href={`/${cert.id}`}>
-      <Card className="hover:shadow-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer border-2 hover:border-blue-500/50">
+      <Card className="group h-full cursor-pointer border border-border/80 bg-card/95 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg">
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div
-              className="p-2 rounded-lg"
+              className="p-2 rounded-lg ring-1 ring-border/60 transition-colors group-hover:ring-primary/40"
               style={{ backgroundColor: `${cert.color}20` }}
             >
               <Icon className="h-6 w-6" style={{ color: cert.color }} />
@@ -102,7 +102,7 @@ export default function CertCard({ cert }: { cert: Certification }) {
               )}
             </div>
           </div>
-          <CardTitle className="text-xl mt-2">{cert.name}</CardTitle>
+          <CardTitle className="text-xl mt-2 tracking-tight">{cert.name}</CardTitle>
           <p className="text-sm text-muted-foreground">{cert.title}</p>
         </CardHeader>
         <CardContent>
