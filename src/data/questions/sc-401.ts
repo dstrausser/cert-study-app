@@ -458,4 +458,640 @@ export const sc401Questions: Question[] = [
       "Microsoft Priva discovers personal data, manages subject rights requests, and reports on privacy risks.",
     difficulty: "medium",
   },
+  // Additional info-protection coverage
+  {
+    id: "sc401-026",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Where in Microsoft Purview do you publish sensitivity labels so they appear for users in Office apps?",
+    options: [
+      { id: "a", text: "Label policy" },
+      { id: "b", text: "Auto-labeling policy" },
+      { id: "c", text: "Endpoint DLP rules" },
+      { id: "d", text: "Records management retention plan" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Label policies publish a set of sensitivity labels to specific users/groups and configure default/required labeling.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc401-027",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Which sensitivity-label encryption setting lets the rights be evaluated at the time of access (so revocation works)?",
+    options: [
+      { id: "a", text: "Configure encryption with assigned permissions (online check)" },
+      { id: "b", text: "User-defined permissions only" },
+      { id: "c", text: "Do Not Forward template offline" },
+      { id: "d", text: "No encryption" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "When permissions are assigned in the label, RMS uses an online check so revocation and changes take effect.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc401-028",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Which Purview feature audits sensitivity-label changes (e.g., upgrades and downgrades)?",
+    options: [
+      { id: "a", text: "Activity explorer + audit logs" },
+      { id: "b", text: "Compliance Manager only" },
+      { id: "c", text: "Records management disposition" },
+      { id: "d", text: "eDiscovery" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Activity explorer surfaces label apply/change events; the underlying audit log captures details for forensics.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-029",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Which Purview feature lets you label and protect Power BI semantic models, reports, and dashboards?",
+    options: [
+      { id: "a", text: "Sensitivity labels for Power BI (with mandatory labeling option)" },
+      { id: "b", text: "Records management" },
+      { id: "c", text: "DLP for Teams" },
+      { id: "d", text: "Information barriers" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Sensitivity labels extend to Power BI content and exports retain protection.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-030",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Which Purview feature lets you require justification when a user changes a label to a lower level?",
+    options: [
+      { id: "a", text: "Mandatory justification on label downgrade" },
+      { id: "b", text: "DLP user override only" },
+      { id: "c", text: "Records management" },
+      { id: "d", text: "eDiscovery hold" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Label policies can require users to justify removing or downgrading labels, captured in audit.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-031",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Which Purview classifier method matches against precise hashed records (e.g., a CSV of customer SSNs)?",
+    options: [
+      { id: "a", text: "Exact Data Match (EDM)" },
+      { id: "b", text: "Trainable classifier" },
+      { id: "c", text: "Document fingerprinting" },
+      { id: "d", text: "Out-of-the-box SIT regex" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "EDM securely hashes a sensitive table and matches content against it for high-precision detection.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc401-032",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Which Purview classifier method matches forms or templates by their structure?",
+    options: [
+      { id: "a", text: "Document fingerprinting" },
+      { id: "b", text: "Trainable classifier" },
+      { id: "c", text: "Sensitive information type regex" },
+      { id: "d", text: "Auto-labeling policy" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Fingerprinting derives a unique signature of a form/template to identify variations.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-033",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "What is the recommended order to roll out sensitivity labels?",
+    options: [
+      { id: "a", text: "Define taxonomy, configure labels, publish via policy, then enable auto-labeling" },
+      { id: "b", text: "Enable auto-labeling first, then define labels" },
+      { id: "c", text: "Configure DLP first, then labels" },
+      { id: "d", text: "Apply records management before labels" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Plan, build, publish, monitor, and only then layer in auto-labeling to reduce user disruption.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc401-034",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Which sensitivity-label option lets you require a label on save/send for Office apps?",
+    options: [
+      { id: "a", text: "Mandatory labeling in label policy" },
+      { id: "b", text: "Records management retention" },
+      { id: "c", text: "DLP rule with block" },
+      { id: "d", text: "Information barriers" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Mandatory labeling forces users to apply a label before saving or sending content.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-035",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "How do you label content stored in Microsoft Fabric/OneLake using Purview?",
+    options: [
+      { id: "a", text: "Sensitivity labels on Fabric items inherit and propagate downstream" },
+      { id: "b", text: "Records management labels" },
+      { id: "c", text: "Manual file-by-file labels only" },
+      { id: "d", text: "Information barriers segments" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Microsoft Fabric supports sensitivity labels with downstream inheritance to dependent items.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc401-036",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Which Purview feature controls SharePoint and Teams privacy/sharing through a sensitivity label applied to the container itself?",
+    options: [
+      { id: "a", text: "Container labels (sites and groups)" },
+      { id: "b", text: "Records management retention" },
+      { id: "c", text: "DLP policy tips" },
+      { id: "d", text: "eDiscovery hold" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Container labels enforce privacy, external sharing, unmanaged-device access, and authentication contexts on the site/group.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-037",
+    certId: "sc-401",
+    domainId: "info-protection",
+    type: "single",
+    question:
+      "Which Purview feature applies sensitivity labels at upload time across SharePoint, OneDrive, Exchange via service-side scans?",
+    options: [
+      { id: "a", text: "Auto-labeling policy (service-side)" },
+      { id: "b", text: "Client-side auto-labeling only" },
+      { id: "c", text: "Content search" },
+      { id: "d", text: "eDiscovery (Premium)" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Service-side auto-labeling scans content at rest and on upload using SITs and trainable classifiers.",
+    difficulty: "medium",
+  },
+
+  // Additional dlp coverage
+  {
+    id: "sc401-038",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "Which DLP rule action notifies a user with a tip and logs the event without blocking?",
+    options: [
+      { id: "a", text: "Audit-only with policy tip" },
+      { id: "b", text: "Block without notifications" },
+      { id: "c", text: "Encrypt only" },
+      { id: "d", text: "Quarantine" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Audit-only logs the match and shows a policy tip; useful for piloting before enforcement.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc401-039",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "Which DLP capability lets you quarantine or restrict SharePoint files that match policy after creation?",
+    options: [
+      { id: "a", text: "Restrict access or remove SharePoint/OneDrive content" },
+      { id: "b", text: "Endpoint DLP egress restriction only" },
+      { id: "c", text: "Communication compliance" },
+      { id: "d", text: "Records management" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "DLP policies can restrict access or quarantine matching SharePoint/OneDrive content.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-040",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "Which Endpoint DLP setting prevents Bluetooth file transfer for files containing sensitive content?",
+    options: [
+      { id: "a", text: "Egress restriction on Bluetooth" },
+      { id: "b", text: "Disable network shares only" },
+      { id: "c", text: "Disable removable media only" },
+      { id: "d", text: "Communication compliance" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Endpoint DLP supports egress restrictions on removable storage, network share, Bluetooth, browser, and printing.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-041",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "Which Endpoint DLP requirement allows Endpoint DLP policies to apply to a Windows device?",
+    options: [
+      { id: "a", text: "Onboarded to Microsoft Purview compliance via Defender for Endpoint" },
+      { id: "b", text: "Joined to a workgroup" },
+      { id: "c", text: "Onboarded to Azure Bastion" },
+      { id: "d", text: "Domain-joined to AD only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Devices must be onboarded to Microsoft Purview (typically via Defender for Endpoint) to receive Endpoint DLP policies.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-042",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "Which retention setting deletes content after a specified period without retaining it first?",
+    options: [
+      { id: "a", text: "Delete only (no retention)" },
+      { id: "b", text: "Retain only" },
+      { id: "c", text: "Retain then delete" },
+      { id: "d", text: "Mark as record" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "A delete-only retention setting purges content after a period without holding it.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc401-043",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "Which Purview feature reviews disposed records to confirm deletion under a retention plan?",
+    options: [
+      { id: "a", text: "Disposition reviews" },
+      { id: "b", text: "Communication compliance" },
+      { id: "c", text: "Activity explorer" },
+      { id: "d", text: "Compliance Manager" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Records management disposition reviews provide approval steps before items are permanently deleted.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-044",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "Which DLP feature surfaces aggregated match data for tuning false positives?",
+    options: [
+      { id: "a", text: "DLP alerts and Activity explorer" },
+      { id: "b", text: "Compliance Manager controls" },
+      { id: "c", text: "eDiscovery (Premium) review sets" },
+      { id: "d", text: "Records management retention plan" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "DLP alerts plus Activity explorer give visibility into matches and outcomes for tuning.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-045",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "How does Adaptive Protection change DLP enforcement?",
+    options: [
+      { id: "a", text: "Tightens DLP and Conditional Access automatically when a user's insider risk level rises" },
+      { id: "b", text: "Encrypts all email by default" },
+      { id: "c", text: "Pauses DLP outside business hours" },
+      { id: "d", text: "Disables Endpoint DLP" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Adaptive Protection uses Insider Risk levels to dynamically apply stricter DLP policies and CA controls.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc401-046",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "Which DLP location must be onboarded to apply DLP rules to messages in Microsoft Teams chat?",
+    options: [
+      { id: "a", text: "Microsoft Teams chat and channel messages location" },
+      { id: "b", text: "Endpoint location only" },
+      { id: "c", text: "Power BI location" },
+      { id: "d", text: "On-premises file shares only" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Selecting the Teams chat/channel messages location enables DLP on Teams conversations.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc401-047",
+    certId: "sc-401",
+    domainId: "dlp",
+    type: "single",
+    question:
+      "Which Purview retention scope lets a single policy apply to all users in Exchange and OneDrive?",
+    options: [
+      { id: "a", text: "Adaptive scope based on a query" },
+      { id: "b", text: "Static scope of one user" },
+      { id: "c", text: "DLP policy" },
+      { id: "d", text: "Records management plan" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Adaptive scopes target users/locations dynamically by query (e.g., department or attribute).",
+    difficulty: "medium",
+  },
+  // Additional insider-risk coverage
+  {
+    id: "sc401-048",
+    certId: "sc-401",
+    domainId: "insider-risk",
+    type: "single",
+    question:
+      "Which Insider Risk Management indicator detects sensitive content being printed?",
+    options: [
+      { id: "a", text: "Endpoint DLP signal: printing of sensitive labeled content" },
+      { id: "b", text: "Sentinel network capture" },
+      { id: "c", text: "Records management disposition" },
+      { id: "d", text: "Compliance Manager assessment" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Insider Risk consumes Endpoint DLP signals like printing, copying, or upload of sensitive content.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-049",
+    certId: "sc-401",
+    domainId: "insider-risk",
+    type: "single",
+    question:
+      "Which Insider Risk role can review cases without seeing user identities?",
+    options: [
+      { id: "a", text: "Insider Risk Management Analysts (with Anonymization on)" },
+      { id: "b", text: "Global Administrator" },
+      { id: "c", text: "Compliance Administrator (always identifies users)" },
+      { id: "d", text: "Reports Reader" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Analysts triage anonymized cases; investigators with the right role can view identities when needed.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-050",
+    certId: "sc-401",
+    domainId: "insider-risk",
+    type: "single",
+    question:
+      "Which template is best to detect leaks of trade secrets where the user is not departing?",
+    options: [
+      { id: "a", text: "Data leaks (general)" },
+      { id: "b", text: "Data theft by departing users" },
+      { id: "c", text: "Security policy violations" },
+      { id: "d", text: "General data leaks by priority users" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "The general 'Data leaks' template covers exfiltration patterns regardless of employment status.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-051",
+    certId: "sc-401",
+    domainId: "insider-risk",
+    type: "single",
+    question:
+      "Which Insider Risk feature lets you scope monitoring to a defined group such as Finance?",
+    options: [
+      { id: "a", text: "Priority user groups" },
+      { id: "b", text: "Conditional Access named locations" },
+      { id: "c", text: "Records management" },
+      { id: "d", text: "Tenant restrictions" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Priority user groups elevate sensitivity for specific high-risk populations.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc401-052",
+    certId: "sc-401",
+    domainId: "insider-risk",
+    type: "single",
+    question:
+      "Which signal source provides indicators that a user opened a competitor's website?",
+    options: [
+      { id: "a", text: "Browsing telemetry from Microsoft Edge / Defender for Endpoint" },
+      { id: "b", text: "Conditional Access" },
+      { id: "c", text: "Records management" },
+      { id: "d", text: "Workbook gallery" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Browsing signals from Edge/Defender for Endpoint feed into Insider Risk for context-aware detection.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc401-053",
+    certId: "sc-401",
+    domainId: "insider-risk",
+    type: "single",
+    question:
+      "Which Communication Compliance feature flags content that resembles harassment or insider trading?",
+    options: [
+      { id: "a", text: "Trainable classifiers in policy templates" },
+      { id: "b", text: "Sensitive information types only" },
+      { id: "c", text: "Records management labels" },
+      { id: "d", text: "DLP policy tips" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Communication Compliance includes built-in trainable classifiers (harassment, threats, profanity) and customer-trainable ones.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-054",
+    certId: "sc-401",
+    domainId: "insider-risk",
+    type: "single",
+    question:
+      "Which Communication Compliance reviewer action escalates a flagged message to a designated investigator?",
+    options: [
+      { id: "a", text: "Escalate (and optionally to a manager or investigation case)" },
+      { id: "b", text: "Resolve only" },
+      { id: "c", text: "Tag false positive" },
+      { id: "d", text: "Delete user account" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Reviewers can escalate flagged messages and route them into a Microsoft Purview investigation case.",
+    difficulty: "medium",
+  },
+
+  // Additional security-m365 coverage
+  {
+    id: "sc401-055",
+    certId: "sc-401",
+    domainId: "security-m365",
+    type: "single",
+    question:
+      "Which Microsoft Purview Audit feature lets you investigate after a high-impact event but only retains for 180 days by default?",
+    options: [
+      { id: "a", text: "Audit (Standard)" },
+      { id: "b", text: "Audit (Premium) only" },
+      { id: "c", text: "eDiscovery (Premium)" },
+      { id: "d", text: "Defender XDR" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Audit Standard typically retains audit data for 180 days; Premium extends to one year (or longer with add-on).",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-056",
+    certId: "sc-401",
+    domainId: "security-m365",
+    type: "single",
+    question:
+      "Which eDiscovery (Premium) feature applies analytics like near-duplicate detection and email threading to review sets?",
+    options: [
+      { id: "a", text: "Review-set analytics" },
+      { id: "b", text: "Compliance Manager controls" },
+      { id: "c", text: "Records management plan" },
+      { id: "d", text: "DLP overrides" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Review-set analytics include near-duplicate detection, email threading, and themes to speed review.",
+    difficulty: "hard",
+  },
+  {
+    id: "sc401-057",
+    certId: "sc-401",
+    domainId: "security-m365",
+    type: "single",
+    question:
+      "Which Microsoft Purview feature blocks specific user groups from communicating with each other (e.g., legal vs. trading)?",
+    options: [
+      { id: "a", text: "Information barriers (segments and policies)" },
+      { id: "b", text: "DLP" },
+      { id: "c", text: "Conditional Access" },
+      { id: "d", text: "Records management" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Information barriers segment users and define block/allow policies between segments in Teams, OneDrive, and SharePoint.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-058",
+    certId: "sc-401",
+    domainId: "security-m365",
+    type: "single",
+    question:
+      "Which Compliance Manager artifact represents a regulation or framework you assess against?",
+    options: [
+      { id: "a", text: "Assessment based on a regulation template" },
+      { id: "b", text: "DLP policy" },
+      { id: "c", text: "Sensitivity label" },
+      { id: "d", text: "eDiscovery case" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Compliance Manager assessments are scoped to a regulation/framework and track improvement actions.",
+    difficulty: "easy",
+  },
+  {
+    id: "sc401-059",
+    certId: "sc-401",
+    domainId: "security-m365",
+    type: "single",
+    question:
+      "Which Microsoft Priva capability automates discovery and fulfilment of GDPR / CCPA subject rights requests?",
+    options: [
+      { id: "a", text: "Subject Rights Requests in Priva Privacy Risk Management" },
+      { id: "b", text: "Records management" },
+      { id: "c", text: "DLP for Teams" },
+      { id: "d", text: "Defender for Cloud Apps" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Priva SRR finds personal data, supports redaction, and automates the response workflow.",
+    difficulty: "medium",
+  },
+  {
+    id: "sc401-060",
+    certId: "sc-401",
+    domainId: "security-m365",
+    type: "single",
+    question:
+      "Which Microsoft Purview feature lets data owners attest to or remediate ROT (redundant, obsolete, trivial) data?",
+    options: [
+      { id: "a", text: "Data lifecycle management with proactive retention/deletion + Compliance Manager improvement actions" },
+      { id: "b", text: "Communication compliance" },
+      { id: "c", text: "Records management disposition only" },
+      { id: "d", text: "Defender for Cloud Apps" },
+    ],
+    correctAnswers: ["a"],
+    explanation:
+      "Data lifecycle management plus disposition reviews and Compliance Manager actions help reduce ROT data.",
+    difficulty: "hard",
+  },
 ];
