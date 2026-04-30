@@ -14,18 +14,33 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <section className="border-b bg-card/50">
-        <div className="max-w-6xl mx-auto px-4 py-10">
-          <h1 className="text-3xl font-bold tracking-tight">
-            {user
-              ? `Welcome back, ${user.displayName}`
-              : "Master your IT certifications"}
-          </h1>
-          <p className="text-muted-foreground mt-2 max-w-2xl">
-            Practice exams, flashcards, and AI-powered explanations covering
-            Azure security, identity, compliance, and operations.
-            {!user && " Create an account to track progress across devices."}
-          </p>
+      <section className="border-b border-border/70 bg-gradient-to-b from-background via-background to-muted/30">
+        <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-14 md:grid-cols-[1.45fr_1fr] md:items-end">
+          <div>
+            <span className="mb-4 inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
+              Enterprise-aligned cloud and security certification prep
+            </span>
+            <h1 className="text-3xl font-bold tracking-tight">
+              {user
+                ? `Welcome back, ${user.displayName}`
+                : "Master your IT certifications"}
+            </h1>
+            <p className="text-muted-foreground mt-2 max-w-2xl">
+              Practice exams, flashcards, and AI-powered explanations covering
+              Azure security, identity, compliance, and operations.
+              {!user && " Create an account to track progress across devices."}
+            </p>
+          </div>
+          <div className="rounded-xl border border-border/70 bg-card p-5 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+              Why teams choose CertStudy
+            </p>
+            <ul className="mt-3 space-y-2 text-sm text-foreground">
+              <li>Structured exam domains across major Azure certifications</li>
+              <li>Progress indicators for repeatable, measurable upskilling</li>
+              <li>Learning paths that map to security-focused role goals</li>
+            </ul>
+          </div>
         </div>
       </section>
 
