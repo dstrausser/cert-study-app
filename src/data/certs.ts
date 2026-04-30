@@ -38,6 +38,20 @@ export const certifications: Certification[] = [
     totalQuestions: 60,
     passingScore: 700,
     examDuration: 45,
+    studyResources: [
+      {
+        title: "Exam SC-900: Skills measured",
+        url: "https://learn.microsoft.com/credentials/certifications/exams/sc-900/",
+        type: "exam-page",
+        description: "Official exam page with the latest skills outline.",
+      },
+      {
+        title: "Microsoft Learn: SC-900 free training",
+        url: "https://learn.microsoft.com/training/courses/sc-900t00",
+        type: "learn-path",
+        description: "Free, self-paced learning path from Microsoft.",
+      },
+    ],
   },
   {
     id: "sc-100",
@@ -80,6 +94,24 @@ export const certifications: Certification[] = [
     totalQuestions: 60,
     passingScore: 700,
     examDuration: 120,
+    studyResources: [
+      {
+        title: "Exam SC-100: Skills measured",
+        url: "https://learn.microsoft.com/credentials/certifications/exams/sc-100/",
+        type: "exam-page",
+      },
+      {
+        title: "Microsoft Learn: SC-100 free training",
+        url: "https://learn.microsoft.com/training/courses/sc-100t00",
+        type: "learn-path",
+      },
+      {
+        title: "Microsoft Cybersecurity Reference Architectures (MCRA)",
+        url: "https://learn.microsoft.com/security/cybersecurity-reference-architecture/mcra",
+        type: "documentation",
+        description: "Architecture reference used heavily on SC-100.",
+      },
+    ],
   },
   {
     id: "sc-200",
@@ -117,6 +149,28 @@ export const certifications: Certification[] = [
     totalQuestions: 55,
     passingScore: 700,
     examDuration: 100,
+    studyResources: [
+      {
+        title: "Exam SC-200: Skills measured",
+        url: "https://learn.microsoft.com/credentials/certifications/exams/sc-200/",
+        type: "exam-page",
+      },
+      {
+        title: "Microsoft Learn: SC-200 free training",
+        url: "https://learn.microsoft.com/training/courses/sc-200t00",
+        type: "learn-path",
+      },
+      {
+        title: "Microsoft Sentinel documentation",
+        url: "https://learn.microsoft.com/azure/sentinel/",
+        type: "documentation",
+      },
+      {
+        title: "KQL quick reference",
+        url: "https://learn.microsoft.com/kusto/query/",
+        type: "documentation",
+      },
+    ],
   },
   {
     id: "sc-300",
@@ -154,6 +208,23 @@ export const certifications: Certification[] = [
     totalQuestions: 55,
     passingScore: 700,
     examDuration: 100,
+    studyResources: [
+      {
+        title: "Exam SC-300: Skills measured",
+        url: "https://learn.microsoft.com/credentials/certifications/exams/sc-300/",
+        type: "exam-page",
+      },
+      {
+        title: "Microsoft Learn: SC-300 free training",
+        url: "https://learn.microsoft.com/training/courses/sc-300t00",
+        type: "learn-path",
+      },
+      {
+        title: "Microsoft Entra documentation",
+        url: "https://learn.microsoft.com/entra/",
+        type: "documentation",
+      },
+    ],
   },
   {
     id: "sc-401",
@@ -191,6 +262,23 @@ export const certifications: Certification[] = [
     totalQuestions: 55,
     passingScore: 700,
     examDuration: 100,
+    studyResources: [
+      {
+        title: "Exam SC-401: Skills measured",
+        url: "https://learn.microsoft.com/credentials/certifications/exams/sc-401/",
+        type: "exam-page",
+      },
+      {
+        title: "Microsoft Learn: SC-401 free training",
+        url: "https://learn.microsoft.com/training/courses/sc-401t00",
+        type: "learn-path",
+      },
+      {
+        title: "Microsoft Purview documentation",
+        url: "https://learn.microsoft.com/purview/",
+        type: "documentation",
+      },
+    ],
   },
   {
     id: "az-500",
@@ -228,6 +316,23 @@ export const certifications: Certification[] = [
     totalQuestions: 60,
     passingScore: 700,
     examDuration: 120,
+    studyResources: [
+      {
+        title: "Exam AZ-500: Skills measured",
+        url: "https://learn.microsoft.com/credentials/certifications/exams/az-500/",
+        type: "exam-page",
+      },
+      {
+        title: "Microsoft Learn: AZ-500 free training",
+        url: "https://learn.microsoft.com/training/courses/az-500t00",
+        type: "learn-path",
+      },
+      {
+        title: "Azure security documentation",
+        url: "https://learn.microsoft.com/azure/security/",
+        type: "documentation",
+      },
+    ],
   },
 
   // ---------- Azure / Microsoft Fundamentals & Adjacent ----------
@@ -262,6 +367,18 @@ export const certifications: Certification[] = [
     totalQuestions: 60,
     passingScore: 700,
     examDuration: 45,
+    studyResources: [
+      {
+        title: "Exam AZ-900: Skills measured",
+        url: "https://learn.microsoft.com/credentials/certifications/exams/az-900/",
+        type: "exam-page",
+      },
+      {
+        title: "Microsoft Learn: AZ-900 free training",
+        url: "https://learn.microsoft.com/training/courses/az-900t00",
+        type: "learn-path",
+      },
+    ],
   },
   {
     id: "az-104",
@@ -300,6 +417,18 @@ export const certifications: Certification[] = [
     totalQuestions: 55,
     passingScore: 700,
     examDuration: 100,
+    studyResources: [
+      {
+        title: "Exam AZ-104: Skills measured",
+        url: "https://learn.microsoft.com/credentials/certifications/exams/az-104/",
+        type: "exam-page",
+      },
+      {
+        title: "Microsoft Learn: AZ-104 free training",
+        url: "https://learn.microsoft.com/training/courses/az-104t00",
+        type: "learn-path",
+      },
+    ],
   },
   {
     id: "ms-900",
@@ -337,6 +466,18 @@ export const certifications: Certification[] = [
     totalQuestions: 60,
     passingScore: 700,
     examDuration: 45,
+    studyResources: [
+      {
+        title: "Exam MS-900: Skills measured",
+        url: "https://learn.microsoft.com/credentials/certifications/exams/ms-900/",
+        type: "exam-page",
+      },
+      {
+        title: "Microsoft Learn: MS-900 free training",
+        url: "https://learn.microsoft.com/training/courses/ms-900t01",
+        type: "learn-path",
+      },
+    ],
   },
 ];
 

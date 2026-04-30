@@ -4,6 +4,13 @@ export interface Domain {
   weight: number; // percentage of exam
 }
 
+export interface StudyResource {
+  title: string;
+  url: string;
+  type: "exam-page" | "learn-path" | "documentation" | "practice";
+  description?: string;
+}
+
 export interface Certification {
   id: string;
   name: string;
@@ -18,6 +25,7 @@ export interface Certification {
   examDuration: number; // minutes
   level?: "fundamentals" | "associate" | "expert" | "specialty";
   category?: string;
+  studyResources?: StudyResource[];
 }
 
 export interface Option {

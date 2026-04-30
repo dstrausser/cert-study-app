@@ -241,6 +241,48 @@ export default function CertDashboard({
             );
           })}
         </div>
+
+        {cert.studyResources && cert.studyResources.length > 0 && (
+          <>
+            <h2 className="text-xl font-semibold mt-10 mb-1">
+              Official Microsoft study materials
+            </h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              Free resources from Microsoft Learn — start with the exam page to
+              see the latest &ldquo;Skills measured&rdquo; outline.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {cert.studyResources.map((res) => (
+                <a
+                  key={res.url}
+                  href={res.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="hover:shadow-md transition-shadow h-full">
+                    <CardContent className="py-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex-1">
+                          <Badge variant="outline" className="mb-1.5 text-[10px] uppercase tracking-wide">
+                            {res.type.replace("-", " ")}
+                          </Badge>
+                          <p className="font-medium text-sm">{res.title}</p>
+                          {res.description && (
+                            <p className="text-xs text-muted-foreground mt-1">
+                              {res.description}
+                            </p>
+                          )}
+                        </div>
+                        <span className="text-xs text-muted-foreground">↗</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </main>
   );
