@@ -1,40 +1,84 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, Award, BookOpen } from "lucide-react";
+import {
+  Shield,
+  ShieldCheck,
+  Award,
+  BookOpen,
+  Lock,
+  Cloud,
+  CloudCog,
+  Radar,
+  KeyRound,
+  FileLock2,
+  Server,
+} from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Certification } from "@/lib/types";
-import { getProgress } from "@/lib/storage";
+import { getProgress, subscribeToProgress } from "@/lib/storage";
 import { getQuestions } from "@/data/questions";
-import { useEffect, useState } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 
 const iconMap: Record<string, React.ElementType> = {
   Shield,
+  ShieldCheck,
   Award,
   BookOpen,
+  Lock,
+  Cloud,
+  CloudCog,
+  Radar,
+  KeyRound,
+  FileLock2,
+  Server,
 };
 
+interface CertStats {
+  exams: number;
+  avgScore: number;
+  questionsStudied: number;
+}
+
+const EMPTY_STATS: CertStats = { exams: 0, avgScore: 0, questionsStudied: 0 };
+
+function makeSnapshot(certId: string) {
+  let cached: CertStats | null = null;
+  let cachedKey = "";
+  return () => {
+    const p = getProgress(certId);
+    const exams = p.examResults.length;
+    const studied = Object.keys(p.flashcardProgress).length;
+    const lastResult = p.examResults[p.examResults.length - 1];
+    const key = `${exams}:${studied}:${p.lastStudyDate}:${lastResult?.id ?? ""}`;
+    if (cached && key === cachedKey) return cached;
+    const avg =
+      exams > 0
+        ? Math.round(p.examResults.reduce((s, r) => s + r.score, 0) / exams)
+        : 0;
+    cached = { exams, avgScore: avg, questionsStudied: studied };
+    cachedKey = key;
+    return cached;
+  };
+}
+
 export default function CertCard({ cert }: { cert: Certification }) {
-  const [stats, setStats] = useState({ exams: 0, avgScore: 0, questionsStudied: 0 });
   const Icon = iconMap[cert.icon] || Shield;
   const totalQuestions = getQuestions(cert.id).length;
 
-  useEffect(() => {
-    const progress = getProgress(cert.id);
-    const exams = progress.examResults.length;
-    const avgScore =
-      exams > 0
-        ? Math.round(
-            progress.examResults.reduce((sum, r) => sum + r.score, 0) / exams
-          )
-        : 0;
-    const questionsStudied = Object.keys(progress.flashcardProgress).length;
-    setStats({ exams, avgScore, questionsStudied });
-  }, [cert.id]);
+  const getSnapshot = useMemo(() => makeSnapshot(cert.id), [cert.id]);
+  const stats = useSyncExternalStore(
+    subscribeToProgress,
+    getSnapshot,
+    () => EMPTY_STATS
+  );
 
-  const studyPercent = totalQuestions > 0 ? Math.round((stats.questionsStudied / totalQuestions) * 100) : 0;
+  const studyPercent =
+    totalQuestions > 0
+      ? Math.round((stats.questionsStudied / totalQuestions) * 100)
+      : 0;
 
   return (
     <Link href={`/${cert.id}`}>
@@ -47,9 +91,16 @@ export default function CertCard({ cert }: { cert: Certification }) {
             >
               <Icon className="h-6 w-6" style={{ color: cert.color }} />
             </div>
-            <Badge variant="secondary" className="text-xs">
-              {cert.vendor.toUpperCase()}
-            </Badge>
+            <div className="flex flex-col items-end gap-1">
+              <Badge variant="secondary" className="text-xs">
+                {cert.vendor.toUpperCase()}
+              </Badge>
+              {cert.level && (
+                <Badge variant="outline" className="text-[10px] capitalize">
+                  {cert.level}
+                </Badge>
+              )}
+            </div>
           </div>
           <CardTitle className="text-xl mt-2">{cert.name}</CardTitle>
           <p className="text-sm text-muted-foreground">{cert.title}</p>

@@ -16,6 +16,8 @@ export interface Certification {
   totalQuestions: number;
   passingScore: number;
   examDuration: number; // minutes
+  level?: "fundamentals" | "associate" | "expert" | "specialty";
+  category?: string;
 }
 
 export interface Option {
@@ -71,4 +73,40 @@ export interface StudyProgress {
   streak: number;
   lastStudyDate: string;
   totalStudyTime: number; // seconds
+}
+
+export interface User {
+  id: string;
+  username: string;
+  email?: string;
+  displayName: string;
+  passwordHash: string;
+  createdAt: string;
+}
+
+export interface PublicUser {
+  id: string;
+  username: string;
+  email?: string;
+  displayName: string;
+  createdAt: string;
+}
+
+export interface LearningPathStep {
+  certId: string;
+  /** Short reason this cert is in the path. */
+  rationale: string;
+  /** Estimated study time in hours. */
+  estimatedHours: number;
+}
+
+export interface LearningPath {
+  id: string;
+  title: string;
+  description: string;
+  audience: string;
+  level: "beginner" | "intermediate" | "advanced";
+  color: string;
+  icon: string;
+  steps: LearningPathStep[];
 }

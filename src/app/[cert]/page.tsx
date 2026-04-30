@@ -1,17 +1,19 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { use, useMemo, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getCertification } from "@/data/certs";
 import { getQuestions } from "@/data/questions";
-import { getProgress, getStreak } from "@/lib/storage";
+import {
+  makeProgressSnapshot,
+  subscribeToProgress,
+} from "@/lib/storage";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
-  GraduationCap,
   BookOpen,
   ClipboardList,
   BarChart3,
@@ -30,33 +32,25 @@ export default function CertDashboard({
   const router = useRouter();
   const cert = getCertification(certId);
 
-  const [stats, setStats] = useState({
-    streak: 0,
-    examsCount: 0,
-    avgScore: 0,
-    totalTime: 0,
-    flashcardsReviewed: 0,
-  });
-
-  useEffect(() => {
-    if (!cert) return;
-    const progress = getProgress(certId);
-    const streak = getStreak(certId);
-    const examsCount = progress.examResults.length;
-    const avgScore =
-      examsCount > 0
-        ? Math.round(
-            progress.examResults.reduce((s, r) => s + r.score, 0) / examsCount
-          )
-        : 0;
-    setStats({
-      streak,
-      examsCount,
-      avgScore,
-      totalTime: progress.totalStudyTime,
-      flashcardsReviewed: Object.keys(progress.flashcardProgress).length,
-    });
-  }, [certId, cert]);
+  const getSnapshot = useMemo(() => makeProgressSnapshot(certId), [certId]);
+  const snap = useSyncExternalStore(subscribeToProgress, getSnapshot, () => null);
+  const progress = snap?.progress ?? null;
+  const examsCount = progress?.examResults.length ?? 0;
+  const avgScore =
+    progress && examsCount > 0
+      ? Math.round(
+          progress.examResults.reduce((s, r) => s + r.score, 0) / examsCount
+        )
+      : 0;
+  const stats = {
+    streak: snap?.streak ?? 0,
+    examsCount,
+    avgScore,
+    totalTime: progress?.totalStudyTime ?? 0,
+    flashcardsReviewed: progress
+      ? Object.keys(progress.flashcardProgress).length
+      : 0,
+  };
 
   if (!cert) {
     return (

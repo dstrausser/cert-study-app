@@ -1,11 +1,12 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { use, useMemo, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { getCertification } from "@/data/certs";
-import { getQuestions } from "@/data/questions";
-import { getProgress, getStreak } from "@/lib/storage";
-import { StudyProgress } from "@/lib/types";
+import {
+  makeProgressSnapshot,
+  subscribeToProgress,
+} from "@/lib/storage";
 import ProgressChart from "@/components/ProgressChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -28,14 +29,10 @@ export default function ProgressPage({
   const { cert: certId } = use(params);
   const cert = getCertification(certId);
 
-  const [progress, setProgress] = useState<StudyProgress | null>(null);
-  const [streak, setStreak] = useState(0);
-
-  useEffect(() => {
-    if (!cert) return;
-    setProgress(getProgress(certId));
-    setStreak(getStreak(certId));
-  }, [certId, cert]);
+  const getSnapshot = useMemo(() => makeProgressSnapshot(certId), [certId]);
+  const snap = useSyncExternalStore(subscribeToProgress, getSnapshot, () => null);
+  const progress = snap?.progress ?? null;
+  const streak = snap?.streak ?? 0;
 
   if (!cert) {
     return (
@@ -47,9 +44,7 @@ export default function ProgressPage({
 
   if (!progress) return null;
 
-  const questions = getQuestions(certId);
   const results = progress.examResults;
-  const latestScore = results.length > 0 ? results[results.length - 1].score : null;
   const bestScore = results.length > 0 ? Math.max(...results.map((r) => r.score)) : null;
   const avgScore =
     results.length > 0
