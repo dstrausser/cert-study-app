@@ -19,6 +19,7 @@ import {
   Server,
   Cloud,
   Map,
+  Route,
 } from "lucide-react";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -36,24 +37,26 @@ export default function LearningPathCard({ path }: { path: LearningPath }) {
   const totalHours = path.steps.reduce((s, st) => s + st.estimatedHours, 0);
 
   return (
-    <Link href={`/paths/${path.id}`}>
-      <Card className="hover:shadow-lg transition-all hover:scale-[1.01] cursor-pointer h-full border-2 hover:border-blue-500/40">
-        <CardHeader className="pb-3">
+    <Link href={`/paths/${path.id}`} className="block h-full">
+      <Card className="h-full border-border bg-card shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-md">
+        <CardHeader className="pb-2">
           <div className="flex items-start justify-between">
             <div
-              className="p-2 rounded-lg"
+              className="rounded-lg border border-border p-2.5"
               style={{ backgroundColor: `${path.color}20` }}
             >
               <Icon className="h-5 w-5" style={{ color: path.color }} />
             </div>
-            <Badge variant="secondary" className="text-xs capitalize">
-              {path.level}
+            <Badge variant="secondary" className="text-[11px]">
+              {path.level.charAt(0).toUpperCase() + path.level.slice(1)}
             </Badge>
           </div>
-          <CardTitle className="text-lg mt-2">{path.title}</CardTitle>
+          <CardTitle className="mt-3 text-lg font-semibold">
+            {path.title}
+          </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
-          <p className="text-sm text-muted-foreground line-clamp-2">
+        <CardContent className="flex flex-1 flex-col space-y-4">
+          <p className="line-clamp-3 text-sm leading-6 text-muted-foreground">
             {path.description}
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -71,9 +74,13 @@ export default function LearningPathCard({ path }: { path: LearningPath }) {
               );
             })}
           </div>
-          <p className="text-xs text-muted-foreground">
-            {path.steps.length} certifications · ~{totalHours} hours total
-          </p>
+          <div className="mt-auto flex items-center justify-between rounded-lg border border-border bg-muted/35 px-3 py-2 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5">
+              <Route className="h-3.5 w-3.5" />
+              {path.steps.length} certifications
+            </span>
+            <span>~{totalHours} hours</span>
+          </div>
         </CardContent>
       </Card>
     </Link>

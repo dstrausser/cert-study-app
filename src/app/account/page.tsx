@@ -109,44 +109,44 @@ function AccountForm({
   }
 
   return (
-    <main className="min-h-screen">
-      <div className="max-w-3xl mx-auto px-4 py-8">
+    <main className="min-h-screen bg-background">
+      <div className="mx-auto max-w-3xl px-4 py-10">
         <Link
           href="/"
-          className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 mb-4"
+          className="mb-5 flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
           Back home
         </Link>
-        <h1 className="text-3xl font-bold tracking-tight">Your account</h1>
-        <p className="text-muted-foreground mt-1">
+        <h1 className="text-3xl font-semibold">Your account</h1>
+        <p className="mt-1 text-muted-foreground">
           Signed in as{" "}
           <span className="font-medium text-foreground">@{user.username}</span>
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
-          <Card>
-            <CardContent className="pt-5">
+        <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+          <Card className="shadow-sm">
+            <CardContent className="pt-2">
               <p className="text-xs text-muted-foreground">Exams taken</p>
               <p className="text-2xl font-bold">{stats.examsTaken}</p>
             </CardContent>
           </Card>
-          <Card>
-            <CardContent className="pt-5">
+          <Card className="shadow-sm">
+            <CardContent className="pt-2">
               <p className="text-xs text-muted-foreground">Average score</p>
               <p className="text-2xl font-bold">
                 {stats.avgScore ? `${stats.avgScore}%` : "--"}
               </p>
             </CardContent>
           </Card>
-          <Card>
-            <CardContent className="pt-5">
+          <Card className="shadow-sm">
+            <CardContent className="pt-2">
               <p className="text-xs text-muted-foreground">Cards reviewed</p>
               <p className="text-2xl font-bold">{stats.cardsReviewed}</p>
             </CardContent>
           </Card>
-          <Card>
-            <CardContent className="pt-5">
+          <Card className="shadow-sm">
+            <CardContent className="pt-2">
               <p className="text-xs text-muted-foreground">Study time</p>
               <p className="text-2xl font-bold">
                 {stats.totalTime ? formatTime(stats.totalTime) : "--"}
@@ -155,7 +155,7 @@ function AccountForm({
           </Card>
         </div>
 
-        <Card className="mt-6">
+        <Card className="mt-6 shadow-sm">
           <CardHeader>
             <CardTitle>Profile</CardTitle>
           </CardHeader>

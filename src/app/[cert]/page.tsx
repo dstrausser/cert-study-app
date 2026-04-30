@@ -17,6 +17,7 @@ import {
   BookOpen,
   ClipboardList,
   BarChart3,
+  ChevronRight,
   Flame,
   ArrowLeft,
   Clock,
@@ -72,19 +73,19 @@ export default function CertDashboard({
   };
 
   return (
-    <main className="min-h-screen">
-      <header className="border-b bg-card">
-        <div className="max-w-6xl mx-auto px-4 py-6">
+    <main className="min-h-screen bg-background">
+      <header className="border-b border-border/70 bg-card">
+        <div className="mx-auto max-w-6xl px-4 py-8">
           <Link
             href="/"
-            className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 mb-4"
+            className="mb-5 flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Certifications
           </Link>
-          <div className="flex items-start justify-between">
+          <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
             <div>
-              <div className="flex items-center gap-3 mb-2">
+              <div className="mb-3 flex items-center gap-3">
                 <Badge
                   style={{
                     backgroundColor: `${cert.color}20`,
@@ -93,26 +94,33 @@ export default function CertDashboard({
                 >
                   {cert.vendor.toUpperCase()}
                 </Badge>
-                <h1 className="text-3xl font-bold">{cert.name}</h1>
               </div>
-              <p className="text-lg text-muted-foreground">{cert.title}</p>
+              <h1 className="text-3xl font-semibold md:text-4xl">
+                {cert.name}
+              </h1>
+              <p className="mt-2 max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">
+                {cert.title}
+              </p>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+                {cert.description}
+              </p>
             </div>
             {stats.streak > 0 && (
-              <div className="flex items-center gap-2 text-orange-500">
-                <Flame className="h-6 w-6" />
-                <span className="text-2xl font-bold">{stats.streak}</span>
-                <span className="text-sm">day streak</span>
+              <div className="flex w-fit items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-orange-600 shadow-sm">
+                <Flame className="h-5 w-5" />
+                <span className="text-xl font-semibold">{stats.streak}</span>
+                <span className="text-sm text-muted-foreground">day streak</span>
               </div>
             )}
           </div>
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="mx-auto max-w-6xl px-4 py-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <Card>
-            <CardContent className="pt-6">
+        <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+          <Card className="shadow-sm">
+            <CardContent className="pt-2">
               <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <ClipboardList className="h-4 w-4" />
                 <span className="text-xs">Exams Taken</span>
@@ -120,8 +128,8 @@ export default function CertDashboard({
               <p className="text-2xl font-bold">{stats.examsCount}</p>
             </CardContent>
           </Card>
-          <Card>
-            <CardContent className="pt-6">
+          <Card className="shadow-sm">
+            <CardContent className="pt-2">
               <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <Target className="h-4 w-4" />
                 <span className="text-xs">Avg Score</span>
@@ -131,8 +139,8 @@ export default function CertDashboard({
               </p>
             </CardContent>
           </Card>
-          <Card>
-            <CardContent className="pt-6">
+          <Card className="shadow-sm">
+            <CardContent className="pt-2">
               <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <BookOpen className="h-4 w-4" />
                 <span className="text-xs">Cards Reviewed</span>
@@ -140,8 +148,8 @@ export default function CertDashboard({
               <p className="text-2xl font-bold">{stats.flashcardsReviewed}</p>
             </CardContent>
           </Card>
-          <Card>
-            <CardContent className="pt-6">
+          <Card className="shadow-sm">
+            <CardContent className="pt-2">
               <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <Clock className="h-4 w-4" />
                 <span className="text-xs">Study Time</span>
@@ -154,13 +162,13 @@ export default function CertDashboard({
         </div>
 
         {/* Study modes */}
-        <h2 className="text-xl font-semibold mb-4">Study Modes</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Link href={`/${certId}/exam`}>
-            <Card className="hover:shadow-lg transition-all hover:scale-[1.02] cursor-pointer h-full">
+        <h2 className="mb-4 text-xl font-semibold">Study Modes</h2>
+        <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <Link href={`/${certId}/exam`} className="block h-full">
+            <Card className="h-full border-border shadow-sm transition hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-md">
               <CardHeader>
-                <div className="p-3 rounded-lg bg-blue-100 dark:bg-blue-950 w-fit">
-                  <ClipboardList className="h-6 w-6 text-blue-600" />
+                <div className="w-fit rounded-lg border border-border bg-muted/45 p-3">
+                  <ClipboardList className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle>Practice Exam</CardTitle>
               </CardHeader>
@@ -172,15 +180,19 @@ export default function CertDashboard({
                 <p className="text-xs text-muted-foreground mt-2">
                   {questions.length} questions available
                 </p>
+                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary">
+                  Configure exam
+                  <ChevronRight className="h-4 w-4" />
+                </div>
               </CardContent>
             </Card>
           </Link>
 
-          <Link href={`/${certId}/flashcards`}>
-            <Card className="hover:shadow-lg transition-all hover:scale-[1.02] cursor-pointer h-full">
+          <Link href={`/${certId}/flashcards`} className="block h-full">
+            <Card className="h-full border-border shadow-sm transition hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-md">
               <CardHeader>
-                <div className="p-3 rounded-lg bg-green-100 dark:bg-green-950 w-fit">
-                  <BookOpen className="h-6 w-6 text-green-600" />
+                <div className="w-fit rounded-lg border border-border bg-muted/45 p-3">
+                  <BookOpen className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle>Flashcards</CardTitle>
               </CardHeader>
@@ -192,15 +204,19 @@ export default function CertDashboard({
                 <p className="text-xs text-muted-foreground mt-2">
                   {stats.flashcardsReviewed}/{questions.length} reviewed
                 </p>
+                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary">
+                  Review cards
+                  <ChevronRight className="h-4 w-4" />
+                </div>
               </CardContent>
             </Card>
           </Link>
 
-          <Link href={`/${certId}/progress`}>
-            <Card className="hover:shadow-lg transition-all hover:scale-[1.02] cursor-pointer h-full">
+          <Link href={`/${certId}/progress`} className="block h-full">
+            <Card className="h-full border-border shadow-sm transition hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-md">
               <CardHeader>
-                <div className="p-3 rounded-lg bg-purple-100 dark:bg-purple-950 w-fit">
-                  <BarChart3 className="h-6 w-6 text-purple-600" />
+                <div className="w-fit rounded-lg border border-border bg-muted/45 p-3">
+                  <BarChart3 className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle>Progress & Stats</CardTitle>
               </CardHeader>
@@ -209,22 +225,26 @@ export default function CertDashboard({
                   Track your scores over time, identify weak domains, and
                   monitor your study progress.
                 </p>
+                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary">
+                  View analytics
+                  <ChevronRight className="h-4 w-4" />
+                </div>
               </CardContent>
             </Card>
           </Link>
         </div>
 
         {/* Exam domains */}
-        <h2 className="text-xl font-semibold mb-4">Exam Domains</h2>
+        <h2 className="mb-4 text-xl font-semibold">Exam Domains</h2>
         <div className="space-y-3">
           {cert.domains.map((domain) => {
             const domainQuestions = questions.filter(
               (q) => q.domainId === domain.id
             );
             return (
-              <Card key={domain.id}>
+              <Card key={domain.id} className="shadow-sm">
                 <CardContent className="py-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex-1">
                       <p className="font-medium">{domain.name}</p>
                       <p className="text-xs text-muted-foreground">
@@ -232,7 +252,7 @@ export default function CertDashboard({
                         {domain.weight}% of exam
                       </p>
                     </div>
-                    <div className="w-24">
+                    <div className="w-full sm:w-28">
                       <Progress value={domain.weight} className="h-2" />
                     </div>
                   </div>
@@ -244,14 +264,14 @@ export default function CertDashboard({
 
         {cert.studyResources && cert.studyResources.length > 0 && (
           <>
-            <h2 className="text-xl font-semibold mt-10 mb-1">
+            <h2 className="mb-1 mt-10 text-xl font-semibold">
               Official Microsoft study materials
             </h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              Free resources from Microsoft Learn — start with the exam page to
+            <p className="mb-4 text-sm text-muted-foreground">
+              Free resources from Microsoft Learn - start with the exam page to
               see the latest &ldquo;Skills measured&rdquo; outline.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               {cert.studyResources.map((res) => (
                 <a
                   key={res.url}
@@ -260,7 +280,7 @@ export default function CertDashboard({
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <Card className="hover:shadow-md transition-shadow h-full">
+                  <Card className="h-full shadow-sm transition hover:border-primary/35 hover:shadow-md">
                     <CardContent className="py-4">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">
@@ -274,7 +294,7 @@ export default function CertDashboard({
                             </p>
                           )}
                         </div>
-                        <span className="text-xs text-muted-foreground">↗</span>
+                        <span className="text-xs text-muted-foreground">Open</span>
                       </div>
                     </CardContent>
                   </Card>

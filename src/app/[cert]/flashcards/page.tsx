@@ -4,10 +4,9 @@ import { use, useState, useMemo } from "react";
 import Link from "next/link";
 import { getCertification } from "@/data/certs";
 import { getQuestions } from "@/data/questions";
-import { updateFlashcardProgress, getProgress } from "@/lib/storage";
+import { updateFlashcardProgress } from "@/lib/storage";
 import FlashCard from "@/components/FlashCard";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Shuffle } from "lucide-react";
 
 export default function FlashcardsPage({

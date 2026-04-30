@@ -6,6 +6,7 @@ import {
   ShieldCheck,
   Award,
   BookOpen,
+  ChevronRight,
   Lock,
   Cloud,
   CloudCog,
@@ -81,38 +82,45 @@ export default function CertCard({ cert }: { cert: Certification }) {
     totalQuestions > 0
       ? Math.round((stats.questionsStudied / totalQuestions) * 100)
       : 0;
+  const levelLabel = cert.level
+    ? cert.level.charAt(0).toUpperCase() + cert.level.slice(1)
+    : "Certification";
 
   return (
-    <Link href={`/${cert.id}`}>
-      <Card className="hover:shadow-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer border-2 hover:border-blue-500/50">
-        <CardHeader className="pb-3">
+    <Link href={`/${cert.id}`} className="block h-full">
+      <Card className="h-full border-border bg-card shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-md">
+        <CardHeader className="pb-2">
           <div className="flex items-start justify-between">
             <div
-              className="p-2 rounded-lg"
+              className="rounded-lg border border-border p-2.5"
               style={{ backgroundColor: `${cert.color}20` }}
             >
               <Icon className="h-6 w-6" style={{ color: cert.color }} />
             </div>
-            <div className="flex flex-col items-end gap-1">
-              <Badge variant="secondary" className="text-xs">
+            <div className="flex flex-col items-end gap-1.5">
+              <Badge variant="secondary" className="text-[11px]">
                 {cert.vendor.toUpperCase()}
               </Badge>
               {cert.level && (
-                <Badge variant="outline" className="text-[10px] capitalize">
-                  {cert.level}
+                <Badge variant="outline" className="text-[11px]">
+                  {levelLabel}
                 </Badge>
               )}
             </div>
           </div>
-          <CardTitle className="text-xl mt-2">{cert.name}</CardTitle>
-          <p className="text-sm text-muted-foreground">{cert.title}</p>
+          <div className="mt-3">
+            <CardTitle className="text-xl font-semibold">{cert.name}</CardTitle>
+            <p className="mt-1 text-sm leading-5 text-muted-foreground">
+              {cert.title}
+            </p>
+          </div>
         </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+        <CardContent className="flex flex-1 flex-col">
+          <p className="line-clamp-3 text-sm leading-6 text-muted-foreground">
             {cert.description}
           </p>
           {user ? (
-            <div className="space-y-3">
+            <div className="mt-5 space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Study Progress</span>
                 <span className="font-medium">{studyPercent}%</span>
@@ -124,10 +132,25 @@ export default function CertCard({ cert }: { cert: Certification }) {
               </div>
             </div>
           ) : (
-            <p className="text-xs text-muted-foreground">
-              {totalQuestions} practice questions · {cert.examDuration} min exam
-            </p>
+            <div className="mt-5 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+              <div className="rounded-md border border-border bg-muted/35 px-3 py-2">
+                <span className="block font-medium text-foreground">
+                  {totalQuestions}
+                </span>
+                Questions
+              </div>
+              <div className="rounded-md border border-border bg-muted/35 px-3 py-2">
+                <span className="block font-medium text-foreground">
+                  {cert.examDuration}m
+                </span>
+                Exam time
+              </div>
+            </div>
           )}
+          <div className="mt-auto flex items-center justify-between pt-5 text-sm font-medium text-primary">
+            <span>Open workspace</span>
+            <ChevronRight className="h-4 w-4" />
+          </div>
         </CardContent>
       </Card>
     </Link>

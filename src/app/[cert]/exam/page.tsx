@@ -2,10 +2,9 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { getCertification } from "@/data/certs";
 import { getRandomQuestions } from "@/data/questions";
-import { ExamResult, Question } from "@/lib/types";
+import { Question } from "@/lib/types";
 import ExamRunner from "@/components/ExamRunner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,7 +17,6 @@ export default function ExamPage({
   params: Promise<{ cert: string }>;
 }) {
   const { cert: certId } = use(params);
-  const router = useRouter();
   const cert = getCertification(certId);
 
   const [examStarted, setExamStarted] = useState(false);
@@ -47,7 +45,7 @@ export default function ExamPage({
     setExamStarted(true);
   };
 
-  const handleComplete = (result: ExamResult) => {
+  const handleComplete = () => {
     // Result already saved in ExamRunner
   };
 

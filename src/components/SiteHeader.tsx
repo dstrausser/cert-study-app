@@ -18,25 +18,25 @@ export default function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4">
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/92 backdrop-blur supports-[backdrop-filter]:bg-background/82">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4">
         <Link href="/" className="flex items-center gap-3">
-          <div className="rounded-md border border-border bg-muted/40 p-1.5 text-foreground">
+          <div className="rounded-lg border border-border bg-card p-2 text-primary shadow-sm">
             <GraduationCap className="h-5 w-5" />
           </div>
           <div className="flex flex-col">
-            <span className="text-[15px] font-semibold tracking-tight">
+            <span className="text-[15px] font-semibold">
               CertStudy
             </span>
-            <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+            <span className="hidden text-[11px] text-muted-foreground sm:inline">
               Exam Prep Platform
             </span>
           </div>
         </Link>
-        <nav className="flex items-center gap-2 text-sm">
+        <nav className="flex min-w-0 items-center gap-2 text-sm">
           <Link
             href="/paths"
-            className="rounded-md px-2.5 py-1.5 text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+            className="hidden rounded-lg px-3 py-2 text-muted-foreground transition hover:bg-muted/60 hover:text-foreground sm:inline-flex"
           >
             Learning Paths
           </Link>
@@ -46,14 +46,16 @@ export default function SiteHeader() {
             <div className="flex items-center gap-2">
               <Link
                 href="/account"
-                className="flex items-center gap-1.5 rounded-md px-2 py-1.5 hover:bg-muted/60"
+                className="flex min-w-0 items-center gap-1.5 rounded-lg px-2 py-1.5 hover:bg-muted/60"
               >
                 <UserIcon className="h-4 w-4" />
-                <span className="font-medium">{user.displayName}</span>
+                <span className="max-w-28 truncate font-medium sm:max-w-40">
+                  {user.displayName}
+                </span>
               </Link>
               <Button variant="ghost" size="sm" onClick={signOut}>
                 <LogOut className="h-4 w-4" />
-                Sign out
+                <span className="hidden sm:inline">Sign out</span>
               </Button>
             </div>
           ) : (
