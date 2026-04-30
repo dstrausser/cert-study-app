@@ -21,6 +21,7 @@ import { Certification } from "@/lib/types";
 import { getProgress, subscribeToProgress } from "@/lib/storage";
 import { getQuestions } from "@/data/questions";
 import { useMemo, useSyncExternalStore } from "react";
+import { useAuth } from "@/components/AuthProvider";
 
 const iconMap: Record<string, React.ElementType> = {
   Shield,
@@ -65,6 +66,7 @@ function makeSnapshot(certId: string) {
 }
 
 export default function CertCard({ cert }: { cert: Certification }) {
+  const { user } = useAuth();
   const Icon = iconMap[cert.icon] || Shield;
   const totalQuestions = getQuestions(cert.id).length;
 
@@ -109,17 +111,23 @@ export default function CertCard({ cert }: { cert: Certification }) {
           <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
             {cert.description}
           </p>
-          <div className="space-y-3">
-            <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">Study Progress</span>
-              <span className="font-medium">{studyPercent}%</span>
+          {user ? (
+            <div className="space-y-3">
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Study Progress</span>
+                <span className="font-medium">{studyPercent}%</span>
+              </div>
+              <Progress value={studyPercent} className="h-2" />
+              <div className="flex justify-between text-xs text-muted-foreground">
+                <span>{stats.exams} exams taken</span>
+                {stats.avgScore > 0 && <span>Avg: {stats.avgScore}%</span>}
+              </div>
             </div>
-            <Progress value={studyPercent} className="h-2" />
-            <div className="flex justify-between text-xs text-muted-foreground">
-              <span>{stats.exams} exams taken</span>
-              {stats.avgScore > 0 && <span>Avg: {stats.avgScore}%</span>}
-            </div>
-          </div>
+          ) : (
+            <p className="text-xs text-muted-foreground">
+              {totalQuestions} practice questions · {cert.examDuration} min exam
+            </p>
+          )}
         </CardContent>
       </Card>
     </Link>

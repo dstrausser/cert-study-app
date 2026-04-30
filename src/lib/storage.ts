@@ -81,18 +81,17 @@ export function makeProgressSnapshot(certId: string) {
 
 function migrateLegacyIfNeeded() {
   if (typeof window === "undefined") return;
-  const legacy = localStorage.getItem(LEGACY_KEY);
-  if (!legacy) return;
-  const guestKey = storageKey(GUEST_USER_ID);
-  if (!localStorage.getItem(guestKey)) {
-    localStorage.setItem(guestKey, legacy);
-  }
+  // Guests are no longer tracked — drop both the legacy single-tenant blob
+  // and any historical guest-bucket data so the UI starts clean.
   localStorage.removeItem(LEGACY_KEY);
+  localStorage.removeItem(storageKey(GUEST_USER_ID));
 }
 
 function getStorage(userId = activeUserId()): Record<string, StudyProgress> {
   if (typeof window === "undefined") return {};
   migrateLegacyIfNeeded();
+  // Guests are not tracked — never read or write a guest bucket.
+  if (userId === GUEST_USER_ID) return {};
   try {
     const data = localStorage.getItem(storageKey(userId));
     return data ? JSON.parse(data) : {};
@@ -125,6 +124,8 @@ export function getProgress(certId: string, userId?: string): StudyProgress {
 
 export function saveExamResult(result: ExamResult) {
   const userId = activeUserId();
+  // Guests can use the app freely but their activity is not persisted.
+  if (userId === GUEST_USER_ID) return;
   const storage = getStorage(userId);
   const progress = getProgress(result.certId, userId);
 
@@ -151,6 +152,8 @@ export function updateFlashcardProgress(
   status: FlashcardProgress["status"]
 ) {
   const userId = activeUserId();
+  // Guests can review cards freely but their progress is not persisted.
+  if (userId === GUEST_USER_ID) return;
   const storage = getStorage(userId);
   const progress = getProgress(certId, userId);
   const now = new Date().toISOString();
