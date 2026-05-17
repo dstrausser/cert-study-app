@@ -38,10 +38,13 @@ export async function POST(req: NextRequest) {
 
   const enriched: EnrichedCard[] = await Promise.all(
     cards.map(async (c) => {
-      const { prices, error } = await fetchPriceChartingPrices(c);
+      const { match, error } = await fetchPriceChartingPrices(c);
       return {
         ...c,
-        priceCharting: prices,
+        priceCharting: match?.prices,
+        priceChartingMatchedName: match?.matchedName,
+        priceChartingMatchedSet: match?.matchedSet,
+        priceChartingProductId: match?.productId,
         priceChartingError: error,
       };
     })

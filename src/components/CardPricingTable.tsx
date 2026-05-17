@@ -97,13 +97,31 @@ export default function CardPricingTable({
           </tr>
         </thead>
         <tbody>
-          {cards.map((c) => (
+          {cards.map((c) => {
+            const pcMatchedDifferent =
+              showPriceCharting &&
+              c.priceChartingMatchedName &&
+              c.priceChartingMatchedName.toLowerCase() !== c.name.toLowerCase();
+            return (
             <tr key={c.id} className="border-t border-border/60">
               <td className="px-3 py-2 align-top">
                 <div className="font-medium">{c.name}</div>
                 {c.number && (
                   <div className="text-xs text-muted-foreground">
                     #{c.number}
+                  </div>
+                )}
+                {pcMatchedDifferent && (
+                  <div className="mt-1 text-xs text-amber-600">
+                    PC match: {c.priceChartingMatchedName}
+                    {c.priceChartingMatchedSet
+                      ? ` · ${c.priceChartingMatchedSet}`
+                      : ""}
+                  </div>
+                )}
+                {showPriceCharting && c.priceChartingError && (
+                  <div className="mt-1 text-xs text-destructive">
+                    PC: {c.priceChartingError}
                   </div>
                 )}
               </td>
@@ -131,7 +149,8 @@ export default function CardPricingTable({
                 ))
               )}
             </tr>
-          ))}
+            );
+          })}
         </tbody>
         <tfoot>
           <tr className="border-t-2 border-border bg-muted/60 font-semibold">

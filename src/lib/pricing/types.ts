@@ -29,6 +29,9 @@ export type ParsedCard = {
 
 export type EnrichedCard = ParsedCard & {
   priceCharting?: PriceSet;
+  priceChartingMatchedName?: string;
+  priceChartingMatchedSet?: string;
+  priceChartingProductId?: string;
   priceChartingError?: string;
 };
 

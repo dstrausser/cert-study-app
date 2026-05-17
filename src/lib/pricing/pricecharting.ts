@@ -1,42 +1,68 @@
 import type { ParsedCard, PriceSet } from "./types";
 
+// PriceCharting product API
+//   Endpoint: GET https://www.pricecharting.com/api/product
+//   Auth:     ?t=<40-char-token>  (from Subscription -> API/Download)
+//   Lookup:   ?id=<pc-product-id> (preferred when known) or ?q=<query> or ?upc=
+//   Prices:   integers in pennies (1732 -> $17.32)
+//   Status:   { "status": "success" } on success
+//
+// Trading-card grade field mapping (PriceCharting reuses the video-game schema
+// for cards). Confirmed tiers shown on the site for cards are: Ungraded,
+// Grade 7, Grade 8, Grade 9, Grade 9.5, PSA 10, BGS 10. The conventional
+// JSON-to-grade mapping is:
+//
+//   loose-price        -> Ungraded
+//   cib-price          -> Grade 7
+//   new-price          -> Grade 8
+//   graded-price       -> Grade 9
+//   box-only-price     -> Grade 9.5
+//   manual-only-price  -> PSA 10
+//   bgs-10-price       -> BGS 10
+//
+// We only surface ungraded + PSA 7/8/9/10 since that matches the app's columns.
+// Verify the mapping on first live call by spot-checking matched-product-name
+// and prices against the PriceCharting web UI for the same card.
+
+type PCProduct = {
+  status?: string;
+  id?: string | number;
+  "product-name"?: string;
+  "console-name"?: string;
+  "loose-price"?: number;
+  "cib-price"?: number;
+  "new-price"?: number;
+  "graded-price"?: number;
+  "box-only-price"?: number;
+  "manual-only-price"?: number;
+  "bgs-10-price"?: number;
+};
+
+export type PriceChartingMatch = {
+  prices: PriceSet;
+  matchedName?: string;
+  matchedSet?: string;
+  productId?: string;
+};
+
 export function isPriceChartingEnabled(): boolean {
   return Boolean(process.env.PRICECHARTING_API_TOKEN);
 }
 
-// PriceCharting's product API returns prices in cents. For TCG products the
-// commonly observed field-to-grade mapping is:
-//   loose-price        -> Ungraded
-//   box-only-price     -> PSA 8 equivalent
-//   manual-only-price  -> PSA 9 equivalent
-//   graded-price       -> PSA 9 (grade 9)
-//   new-price          -> PSA 10
-// PriceCharting does not publish a dedicated PSA 7 tier, so that column stays
-// empty unless the source provides one in the future.
-type PCProduct = {
-  "product-name"?: string;
-  "console-name"?: string;
-  "loose-price"?: number;
-  "graded-price"?: number;
-  "manual-only-price"?: number;
-  "box-only-price"?: number;
-  "new-price"?: number;
-  status?: string;
-};
-
-function centsToDollars(v: number | undefined): number | undefined {
-  if (typeof v !== "number" || !Number.isFinite(v)) return undefined;
+function penniesToDollars(v: number | undefined): number | undefined {
+  if (typeof v !== "number" || !Number.isFinite(v) || v <= 0) return undefined;
   return v / 100;
 }
 
 function productToPriceSet(p: PCProduct): PriceSet {
   const out: PriceSet = {};
-  const ungraded = centsToDollars(p["loose-price"]);
-  const psa8 = centsToDollars(p["box-only-price"]);
-  const psa9 =
-    centsToDollars(p["manual-only-price"]) ?? centsToDollars(p["graded-price"]);
-  const psa10 = centsToDollars(p["new-price"]);
+  const ungraded = penniesToDollars(p["loose-price"]);
+  const psa7 = penniesToDollars(p["cib-price"]);
+  const psa8 = penniesToDollars(p["new-price"]);
+  const psa9 = penniesToDollars(p["graded-price"]);
+  const psa10 = penniesToDollars(p["manual-only-price"]);
   if (ungraded !== undefined) out.ungraded = ungraded;
+  if (psa7 !== undefined) out.psa7 = psa7;
   if (psa8 !== undefined) out.psa8 = psa8;
   if (psa9 !== undefined) out.psa9 = psa9;
   if (psa10 !== undefined) out.psa10 = psa10;
@@ -44,13 +70,12 @@ function productToPriceSet(p: PCProduct): PriceSet {
 }
 
 function buildQuery(card: ParsedCard): string {
-  const parts = [card.name, card.set, card.number].filter(Boolean);
-  return parts.join(" ");
+  return [card.name, card.set, card.number].filter(Boolean).join(" ");
 }
 
 export async function fetchPriceChartingPrices(
   card: ParsedCard
-): Promise<{ prices?: PriceSet; error?: string }> {
+): Promise<{ match?: PriceChartingMatch; error?: string }> {
   const token = process.env.PRICECHARTING_API_TOKEN;
   if (!token) return { error: "PriceCharting not configured" };
 
@@ -60,18 +85,24 @@ export async function fetchPriceChartingPrices(
 
   try {
     const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) {
-      return { error: `PriceCharting HTTP ${res.status}` };
-    }
+    if (!res.ok) return { error: `PriceCharting HTTP ${res.status}` };
+
     const data = (await res.json()) as PCProduct;
     if (data.status && data.status !== "success") {
       return { error: `PriceCharting: ${data.status}` };
     }
-    return { prices: productToPriceSet(data) };
+
+    return {
+      match: {
+        prices: productToPriceSet(data),
+        matchedName: data["product-name"],
+        matchedSet: data["console-name"],
+        productId: data.id !== undefined ? String(data.id) : undefined,
+      },
+    };
   } catch (e) {
     return {
       error: e instanceof Error ? e.message : "PriceCharting request failed",
     };
   }
 }
-
