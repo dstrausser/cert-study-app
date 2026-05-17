@@ -1,10 +1,17 @@
 import type { GradeKey, ParsedCard, PriceSet } from "./types";
 
-const NAME_KEYS = ["name", "card", "card name", "title", "card title"];
+const NAME_KEYS = [
+  "product name",
+  "card name",
+  "card",
+  "name",
+  "title",
+  "card title",
+];
 const SET_KEYS = ["set", "set name", "series", "expansion"];
-const NUMBER_KEYS = ["number", "card number", "no", "no.", "#"];
+const NUMBER_KEYS = ["card number", "number", "no", "no.", "#"];
 const QTY_KEYS = ["quantity", "qty", "count"];
-const CONDITION_KEYS = ["condition", "grade", "grading", "grader"];
+const CONDITION_KEYS = ["grade", "condition", "card condition", "grading"];
 
 const UNGRADED_PRICE_KEYS = [
   "market price",

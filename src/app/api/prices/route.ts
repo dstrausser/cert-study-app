@@ -5,7 +5,29 @@ import {
   isPriceChartingEnabled,
 } from "@/lib/pricing/pricecharting";
 
-const MAX_CARDS = 500;
+const MAX_CARDS = 1000;
+const PC_CONCURRENCY = 6;
+
+async function mapWithConcurrency<T, R>(
+  items: T[],
+  limit: number,
+  fn: (item: T) => Promise<R>
+): Promise<R[]> {
+  const results = new Array<R>(items.length);
+  let next = 0;
+  async function worker() {
+    while (next < items.length) {
+      const i = next++;
+      results[i] = await fn(items[i]);
+    }
+  }
+  const workers = Array.from(
+    { length: Math.min(limit, items.length) },
+    worker
+  );
+  await Promise.all(workers);
+  return results;
+}
 
 export async function POST(req: NextRequest) {
   let body: { cards?: ParsedCard[] };
@@ -36,8 +58,10 @@ export async function POST(req: NextRequest) {
     return Response.json(response);
   }
 
-  const enriched: EnrichedCard[] = await Promise.all(
-    cards.map(async (c) => {
+  const enriched: EnrichedCard[] = await mapWithConcurrency(
+    cards,
+    PC_CONCURRENCY,
+    async (c) => {
       const { match, error } = await fetchPriceChartingPrices(c);
       return {
         ...c,
@@ -47,7 +71,7 @@ export async function POST(req: NextRequest) {
         priceChartingProductId: match?.productId,
         priceChartingError: error,
       };
-    })
+    }
   );
 
   const response: PricingResponse = {
