@@ -73,6 +73,21 @@ function buildQuery(card: ParsedCard): string {
   return [card.name, card.set, card.number].filter(Boolean).join(" ");
 }
 
+const BROWSER_HEADERS = {
+  "user-agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+  accept: "application/json, text/plain, */*",
+  "accept-language": "en-US,en;q=0.9",
+};
+
+function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function fetchOnce(url: URL): Promise<Response> {
+  return fetch(url, { cache: "no-store", headers: BROWSER_HEADERS });
+}
+
 export async function fetchPriceChartingPrices(
   card: ParsedCard
 ): Promise<{ match?: PriceChartingMatch; error?: string }> {
@@ -84,15 +99,15 @@ export async function fetchPriceChartingPrices(
   url.searchParams.set("q", buildQuery(card));
 
   try {
-    const res = await fetch(url, {
-      cache: "no-store",
-      headers: {
-        "user-agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        accept: "application/json, text/plain, */*",
-        "accept-language": "en-US,en;q=0.9",
-      },
-    });
+    let res = await fetchOnce(url);
+
+    // PriceCharting throttles bursty traffic with a 403 + host_not_allowed.
+    // Back off and retry twice with jittered delay before giving up.
+    for (let attempt = 0; res.status === 403 && attempt < 2; attempt++) {
+      await sleep(5000 + attempt * 5000 + Math.random() * 1000);
+      res = await fetchOnce(url);
+    }
+
     if (!res.ok) return { error: `PriceCharting HTTP ${res.status}` };
 
     const data = (await res.json()) as PCProduct;

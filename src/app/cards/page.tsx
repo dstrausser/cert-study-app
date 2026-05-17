@@ -13,9 +13,11 @@ import CardPricingTable from "@/components/CardPricingTable";
 type Status =
   | { kind: "idle" }
   | { kind: "parsing" }
-  | { kind: "pricing"; total: number }
+  | { kind: "pricing"; done: number; total: number }
   | { kind: "ready" }
   | { kind: "error"; message: string };
+
+const PC_BATCH_SIZE = 20;
 
 export default function CardsPage() {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
@@ -52,25 +54,39 @@ export default function CardsPage() {
       return;
     }
 
-    setStatus({ kind: "pricing", total: parsed.length });
+    setStatus({ kind: "pricing", done: 0, total: parsed.length });
 
+    const enriched: EnrichedCard[] = [];
+    let pcDetected = false;
     try {
-      const res = await fetch("/api/prices", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ cards: parsed satisfies ParsedCard[] }),
-      });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        setStatus({
-          kind: "error",
-          message: body.error ?? `Pricing API returned ${res.status}`,
+      for (let i = 0; i < parsed.length; i += PC_BATCH_SIZE) {
+        const batch = parsed.slice(i, i + PC_BATCH_SIZE);
+        const res = await fetch("/api/prices", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ cards: batch satisfies ParsedCard[] }),
         });
-        return;
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          setStatus({
+            kind: "error",
+            message: body.error ?? `Pricing API returned ${res.status}`,
+          });
+          setCards([...enriched, ...parsed.slice(i)]);
+          setPcEnabled(pcDetected);
+          return;
+        }
+        const data = (await res.json()) as PricingResponse;
+        pcDetected = data.priceChartingEnabled;
+        enriched.push(...data.cards);
+        setCards([...enriched]);
+        setPcEnabled(pcDetected);
+        setStatus({
+          kind: "pricing",
+          done: Math.min(i + PC_BATCH_SIZE, parsed.length),
+          total: parsed.length,
+        });
       }
-      const data = (await res.json()) as PricingResponse;
-      setPcEnabled(data.priceChartingEnabled);
-      setCards(data.cards);
       setStatus({ kind: "ready" });
     } catch (e) {
       setStatus({
@@ -143,8 +159,8 @@ export default function CardsPage() {
       )}
       {status.kind === "pricing" && (
         <StatusBar>
-          <Loader2 className="h-4 w-4 animate-spin" /> Pricing {status.total}{" "}
-          cards…
+          <Loader2 className="h-4 w-4 animate-spin" /> Pricing cards…{" "}
+          {status.done}/{status.total}
         </StatusBar>
       )}
       {status.kind === "error" && (

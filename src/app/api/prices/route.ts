@@ -5,8 +5,15 @@ import {
   isPriceChartingEnabled,
 } from "@/lib/pricing/pricecharting";
 
-const MAX_CARDS = 1000;
-const PC_CONCURRENCY = 6;
+export const maxDuration = 60;
+
+const MAX_CARDS = 20;
+const PC_CONCURRENCY = 1;
+const PC_INTER_REQUEST_MS = 1500;
+
+function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
+}
 
 async function mapWithConcurrency<T, R>(
   items: T[],
@@ -19,6 +26,7 @@ async function mapWithConcurrency<T, R>(
     while (next < items.length) {
       const i = next++;
       results[i] = await fn(items[i]);
+      if (next < items.length) await sleep(PC_INTER_REQUEST_MS);
     }
   }
   const workers = Array.from(
