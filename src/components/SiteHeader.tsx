@@ -40,6 +40,12 @@ export default function SiteHeader() {
           >
             Learning Paths
           </Link>
+          <Link
+            href="/cards"
+            className="hidden rounded-lg px-3 py-2 text-muted-foreground transition hover:bg-muted/60 hover:text-foreground sm:inline-flex"
+          >
+            Card Pricing
+          </Link>
           {!ready ? (
             <div className="h-7 w-20 rounded bg-muted animate-pulse" />
           ) : user ? (
