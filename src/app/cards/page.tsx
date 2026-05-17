@@ -1,8 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Upload, FileWarning, Loader2, BadgeCheck, Info } from "lucide-react";
+import {
+  Upload,
+  FileWarning,
+  Loader2,
+  BadgeCheck,
+  Info,
+  Download,
+} from "lucide-react";
 import { parseCollectrCsv } from "@/lib/pricing/collectr-csv";
+import { buildCollectionCsv, downloadCsv } from "@/lib/pricing/csv-export";
 import type {
   EnrichedCard,
   ParsedCard,
@@ -181,7 +189,24 @@ export default function CardsPage() {
       )}
 
       {cards.length > 0 && (
-        <CardPricingTable cards={cards} showPriceCharting={pcEnabled} />
+        <>
+          <div className="mb-3 flex items-center justify-end">
+            <button
+              type="button"
+              onClick={() => {
+                const csv = buildCollectionCsv(cards, pcEnabled);
+                const stem = fileName?.replace(/\.csv$/i, "") ?? "collection";
+                const stamp = new Date().toISOString().slice(0, 10);
+                downloadCsv(`${stem}-priced-${stamp}.csv`, csv);
+              }}
+              className="inline-flex h-9 items-center gap-2 rounded-lg border border-border bg-card px-3 text-sm font-medium shadow-sm transition hover:bg-muted/70"
+            >
+              <Download className="h-4 w-4" />
+              Export CSV
+            </button>
+          </div>
+          <CardPricingTable cards={cards} showPriceCharting={pcEnabled} />
+        </>
       )}
 
       {status.kind === "idle" && cards.length === 0 && (
