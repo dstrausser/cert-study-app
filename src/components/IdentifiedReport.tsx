@@ -210,7 +210,89 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
                 </div>
               </div>
 
-              <div className="overflow-x-auto rounded-lg border border-border bg-card shadow-sm">
+              <div className="md:hidden divide-y divide-border/60 overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+                {photoRows.map((row) => {
+                  const pcMatchedDifferent =
+                    row.pcMatchedName &&
+                    row.pcMatchedName.toLowerCase() !==
+                      row.card.toLowerCase();
+                  return (
+                    <div key={`m-${row.key}`} className="flex gap-3 p-3">
+                      <a
+                        href={row.thumb}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0"
+                      >
+                        <Image
+                          src={row.thumb}
+                          alt={row.card}
+                          width={84}
+                          height={112}
+                          className="h-auto w-[84px] rounded border border-border bg-muted object-contain"
+                          unoptimized
+                        />
+                      </a>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-baseline justify-between gap-2">
+                          <span className="text-xs font-medium text-muted-foreground">
+                            {row.pos}
+                          </span>
+                        </div>
+                        <div className="mt-0.5 font-medium leading-tight">
+                          {row.card}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {row.set}
+                        </div>
+                        {pcMatchedDifferent && (
+                          <div className="mt-1 text-xs text-amber-600">
+                            PC match: {row.pcMatchedName}
+                            {row.pcMatchedSet ? ` · ${row.pcMatchedSet}` : ""}
+                          </div>
+                        )}
+                        <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
+                          <div>
+                            <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                              Collectr
+                            </div>
+                            <div className="font-semibold text-emerald-600 tabular-nums">
+                              {row.price > 0 ? (
+                                fmt(row.price)
+                              ) : (
+                                <span className="text-muted-foreground">—</span>
+                              )}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                              PriceCharting
+                            </div>
+                            <div className="tabular-nums">
+                              {row.pcLoading ? (
+                                <Loader2 className="h-3.5 w-3.5 animate-spin text-muted-foreground" />
+                              ) : row.pcUngraded !== undefined ? (
+                                <span className="font-semibold text-emerald-600">
+                                  {fmt(row.pcUngraded)}
+                                </span>
+                              ) : (
+                                <span
+                                  className="text-xs text-muted-foreground"
+                                  title={row.pcError}
+                                >
+                                  —
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="hidden md:block overflow-x-auto rounded-lg border border-border bg-card shadow-sm">
                 <table className="w-full text-sm">
                   <thead className="bg-muted/60 text-left text-xs uppercase text-muted-foreground">
                     <tr>
