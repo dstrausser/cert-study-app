@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   Upload,
   FileWarning,
@@ -8,6 +9,7 @@ import {
   BadgeCheck,
   Info,
   Download,
+  ArrowRight,
 } from "lucide-react";
 import { parseCollectrCsv } from "@/lib/pricing/collectr-csv";
 import { buildCollectionCsv, downloadCsv } from "@/lib/pricing/csv-export";
@@ -116,6 +118,15 @@ export default function CardsPage() {
           Collectr column. PSA 7 / 8 / 9 / 10 columns from PriceCharting appear
           once an API token is configured.
         </p>
+        <div className="mt-4">
+          <Link
+            href="/cards/identified"
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium shadow-sm transition hover:bg-muted/70"
+          >
+            View identified card report
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </header>
 
       <section className="mb-6 grid gap-4 rounded-lg border border-border bg-card p-5 sm:grid-cols-[1fr_auto] sm:items-center">
