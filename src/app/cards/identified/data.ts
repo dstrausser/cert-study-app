@@ -32,7 +32,7 @@ export const photos: Photo[] = [
       c("IMG_0561_r0c0", "R1-1", "Mega Gengar ex メガゲンガー", "MEGA Dream ex (JP) 240/193 SAR", 460.22),
       c("IMG_0561_r0c1", "R1-2", "Zekrom ex", "Black Bolt 166/086 SIR", 246.99),
       c("IMG_0561_r0c2", "R1-3", "Reshiram ex", "White Flare 166/086 SIR", 200.99),
-      c("IMG_0561_r0c3", "R1-4", "Lance's Charizard", "(set unverified)", 0),
+      c("IMG_0561_r0c3", "R1-4", "Charizard (TG03)", "SWSH11: Lost Origin Trainer Gallery TG03/TG30", 38.33),
       c("IMG_0561_r0c4", "R1-5", "Squirtle", "Stellar Crown 148/142 IR", 122.60),
       c("IMG_0561_r1c0", "R2-1", "Kyurem ex", "Black Bolt 165/086 SIR", 76.54),
       c("IMG_0561_r1c1", "R2-2", "Flareon ex", "Prismatic Evolutions 146/131 SIR", 193.65),
