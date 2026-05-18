@@ -77,7 +77,7 @@ export const photos: Photo[] = [
       c("IMG_0565_r1c0", "R2-1", "Cinccino", "Temporal Forces 183/162 IR", 33.71),
       c("IMG_0565_r1c1", "R2-2", "Cleffa", "Obsidian Flames 202/197 IR", 50.02),
       c("IMG_0565_r1c2", "R2-3", "Eevee (Master Ball Pattern)", "Prismatic Evolutions 074/131", 16.29),
-      c("IMG_0565_r1c3", "R2-4", "Umbreon ex (Master Ball Pattern)", "Prismatic Evolutions 060/131", 0),
+      c("IMG_0565_r1c3", "R2-4", "Umbreon ex (Master Ball Pattern)", "Prismatic Evolutions 060/131", 80.31),
       c("IMG_0565_r1c4", "R2-5", "Pichu (JP)", "Expedition (Japanese) 114/128 Rare", 185.00),
       c("IMG_0565_r2c0", "R3-1", "Slowpoke (2nd copy)", "SV Base Set 204/198 IR", 46.97),
       c("IMG_0565_r2c1", "R3-2", "Riolu", "Crown Zenith: Galarian Gallery GG26/GG70", 10.55),
