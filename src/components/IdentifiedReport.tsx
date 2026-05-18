@@ -26,6 +26,11 @@ type Row = IdentifiedCard & {
   pcMatchedName?: string;
   pcMatchedSet?: string;
   pcError?: string;
+  tcgNm?: number;
+  tcgVariant?: string;
+  tcgMatchedName?: string;
+  tcgError?: string;
+  tcgUrl?: string;
   pcLoading: boolean;
 };
 
@@ -33,6 +38,9 @@ type PcStatus = {
   configured: boolean;
   tokenLength: number;
   tokenPreview: string | null;
+  pokemonTcgConfigured: boolean;
+  pokemonTcgKeyLength: number;
+  pokemonTcgKeyPreview: string | null;
   vercelEnv: string | null;
   nodeEnv: string;
 };
@@ -181,6 +189,11 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
             pcMatchedName: enriched?.priceChartingMatchedName,
             pcMatchedSet: enriched?.priceChartingMatchedSet,
             pcError: enriched?.priceChartingError,
+            tcgNm: enriched?.tcgplayerNm,
+            tcgVariant: enriched?.tcgplayerVariant,
+            tcgMatchedName: enriched?.tcgplayerMatchedName,
+            tcgError: enriched?.tcgplayerError,
+            tcgUrl: enriched?.tcgplayerUrl,
           };
         }
         return copy;
@@ -196,11 +209,18 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
   }
 
   const pcEnabled = pcStatus?.configured ?? null;
+  const tcgEnabled = pcStatus?.pokemonTcgConfigured ?? null;
+  const anyEnabled = pcEnabled || tcgEnabled;
   const totalCollectr = rows.reduce((s, r) => s + (r.price || 0), 0);
   const totalPc = rows.reduce((s, r) => s + (r.pcUngraded ?? 0), 0);
-  const failedRows = rows.filter((r) => r.pcError);
+  const totalTcg = rows.reduce((s, r) => s + (r.tcgNm ?? 0), 0);
+  const failedRows = rows.filter((r) => r.pcError || r.tcgError);
   const pcLoadedCount = rows.filter(
-    (r) => r.pcUngraded !== undefined || r.pcError
+    (r) =>
+      r.pcUngraded !== undefined ||
+      r.pcError ||
+      r.tcgNm !== undefined ||
+      r.tcgError
   ).length;
 
   const byPhoto: Record<string, Row[]> = {};
@@ -210,9 +230,9 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
 
   return (
     <>
-      <section className="mb-8 grid gap-3 sm:grid-cols-4">
-        <Stat label="Cards identified" value={String(rows.length)} />
-        <Stat label="Source photos" value={String(photos.length)} />
+      <section className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <Stat label="Cards" value={String(rows.length)} />
+        <Stat label="Photos" value={String(photos.length)} />
         <Stat
           label="Collectr total"
           value={fmt(totalCollectr)}
@@ -234,35 +254,46 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
               : undefined
           }
         />
+        <Stat
+          label="TCGplayer NM total"
+          value={
+            tcgEnabled === false
+              ? "Not configured"
+              : !hasSynced
+                ? "Not synced"
+                : fmt(totalTcg)
+          }
+          emphasis={tcgEnabled === false ? "muted" : "emerald"}
+        />
       </section>
 
       <section className="mb-6 flex flex-wrap items-center gap-3 rounded-lg border border-border bg-card p-4">
-        {pcEnabled === null ? (
+        {pcStatus === null && !pcStatusError ? (
           <span className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground">
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
-            Checking PriceCharting status…
-          </span>
-        ) : pcEnabled ? (
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-600">
-            <BadgeCheck className="h-3.5 w-3.5" />
-            PriceCharting connected
-            {pcStatus?.vercelEnv ? ` · ${pcStatus.vercelEnv}` : ""}
+            Checking pricing sources…
           </span>
         ) : (
-          <span
-            className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-700"
-            title={pcStatusError ?? undefined}
-          >
-            <Info className="h-3.5 w-3.5" />
-            PriceCharting not configured
-            {pcStatus?.vercelEnv ? ` for ${pcStatus.vercelEnv}` : ""}
-          </span>
+          <>
+            <SourceBadge
+              label="PriceCharting"
+              enabled={pcEnabled}
+              env={pcStatus?.vercelEnv}
+              error={pcStatusError}
+            />
+            <SourceBadge
+              label="TCGplayer (via Pokémon TCG API)"
+              enabled={tcgEnabled}
+              env={pcStatus?.vercelEnv}
+              error={pcStatusError}
+            />
+          </>
         )}
 
         <button
           type="button"
           onClick={() => sync(rows)}
-          disabled={!pcEnabled || syncing}
+          disabled={!anyEnabled || syncing}
           className="inline-flex h-9 items-center gap-2 rounded-lg bg-primary px-3 text-sm font-medium text-primary-foreground shadow-sm transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {syncing ? (
@@ -274,14 +305,14 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
             ? `Syncing ${progress.done}/${progress.total}`
             : hasSynced
               ? "Re-sync all"
-              : "Sync from PriceCharting"}
+              : "Sync live prices"}
         </button>
 
         {hasSynced && failedRows.length > 0 && !syncing && (
           <button
             type="button"
             onClick={() => sync(failedRows)}
-            disabled={!pcEnabled || syncing}
+            disabled={!anyEnabled || syncing}
             className="inline-flex h-9 items-center gap-2 rounded-lg border border-border bg-card px-3 text-sm font-medium shadow-sm transition hover:bg-muted/60"
           >
             <RefreshCw className="h-4 w-4" />
@@ -291,10 +322,10 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
 
         <span className="text-xs text-muted-foreground">
           {syncing
-            ? "PriceCharting rate-limits to ~40 req/min, so this can take a few minutes for a full collection."
-            : pcEnabled === false
-              ? "Set PRICECHARTING_API_TOKEN in Vercel env vars for the current environment, then redeploy."
-              : "Tap to pull live PriceCharting ungraded prices for every card."}
+            ? "PriceCharting rate-limits to ~40 req/min, so a full collection takes a few minutes."
+            : !anyEnabled
+              ? "Set PRICECHARTING_API_TOKEN and/or POKEMONTCG_API_KEY in Vercel env vars, then redeploy."
+              : "Tap to pull PriceCharting graded tiers and TCGplayer NM market prices."}
         </span>
       </section>
 
@@ -304,6 +335,10 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
           const photoCollectr = photoRows.reduce((s, r) => s + (r.price || 0), 0);
           const photoPc = photoRows.reduce(
             (s, r) => s + (r.pcUngraded ?? 0),
+            0
+          );
+          const photoTcg = photoRows.reduce(
+            (s, r) => s + (r.tcgNm ?? 0),
             0
           );
           return (
@@ -333,6 +368,11 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
                     {pcEnabled !== false && (
                       <div className="text-xs text-muted-foreground">
                         PC {photoPc > 0 ? fmt(photoPc) : "—"}
+                      </div>
+                    )}
+                    {tcgEnabled !== false && (
+                      <div className="text-xs text-muted-foreground">
+                        TCG {photoTcg > 0 ? fmt(photoTcg) : "—"}
                       </div>
                     )}
                   </div>
@@ -380,7 +420,7 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
                             {row.pcMatchedSet ? ` · ${row.pcMatchedSet}` : ""}
                           </div>
                         )}
-                        <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
+                        <div className="mt-2 grid grid-cols-3 gap-2 text-sm">
                           <div>
                             <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
                               Collectr
@@ -414,6 +454,33 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
                               )}
                             </div>
                           </div>
+                          <div>
+                            <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                              TCGplayer NM
+                            </div>
+                            <div className="tabular-nums">
+                              {row.pcLoading ? (
+                                <Loader2 className="h-3.5 w-3.5 animate-spin text-muted-foreground" />
+                              ) : row.tcgNm !== undefined ? (
+                                <a
+                                  href={row.tcgUrl ?? undefined}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="font-semibold text-emerald-600 hover:underline"
+                                  title={row.tcgVariant}
+                                >
+                                  {fmt(row.tcgNm)}
+                                </a>
+                              ) : (
+                                <span
+                                  className="text-xs text-muted-foreground"
+                                  title={row.tcgError}
+                                >
+                                  —
+                                </span>
+                              )}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -434,6 +501,9 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
                       </th>
                       <th className="px-3 py-2 text-right font-medium">
                         PriceCharting
+                      </th>
+                      <th className="px-3 py-2 text-right font-medium">
+                        TCGplayer NM
                       </th>
                     </tr>
                   </thead>
@@ -501,6 +571,28 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
                             </span>
                           )}
                         </td>
+                        <td className="px-3 py-2 text-right align-middle tabular-nums">
+                          {row.pcLoading ? (
+                            <Loader2 className="ml-auto h-3.5 w-3.5 animate-spin text-muted-foreground" />
+                          ) : row.tcgNm !== undefined ? (
+                            <a
+                              href={row.tcgUrl ?? undefined}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-emerald-600 hover:underline"
+                              title={row.tcgVariant}
+                            >
+                              {fmt(row.tcgNm)}
+                            </a>
+                          ) : (
+                            <span
+                              className="text-xs text-muted-foreground"
+                              title={row.tcgError}
+                            >
+                              —
+                            </span>
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -511,6 +603,39 @@ export default function IdentifiedReport({ photos }: { photos: Photo[] }) {
         })}
       </div>
     </>
+  );
+}
+
+function SourceBadge({
+  label,
+  enabled,
+  env,
+  error,
+}: {
+  label: string;
+  enabled: boolean | null;
+  env?: string | null;
+  error?: string | null;
+}) {
+  if (enabled === null) return null;
+  if (enabled) {
+    return (
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-600">
+        <BadgeCheck className="h-3.5 w-3.5" />
+        {label}
+        {env ? ` · ${env}` : ""}
+      </span>
+    );
+  }
+  return (
+    <span
+      className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-700"
+      title={error ?? undefined}
+    >
+      <Info className="h-3.5 w-3.5" />
+      {label} not configured
+      {env ? ` for ${env}` : ""}
+    </span>
   );
 }
 

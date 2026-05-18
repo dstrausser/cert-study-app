@@ -4,6 +4,10 @@ import {
   fetchPriceChartingPrices,
   isPriceChartingEnabled,
 } from "@/lib/pricing/pricecharting";
+import {
+  fetchPokemonTcgPrices,
+  isPokemonTcgEnabled,
+} from "@/lib/pricing/pokemontcg";
 
 export const maxDuration = 60;
 
@@ -57,10 +61,12 @@ export async function POST(req: NextRequest) {
   }
 
   const pcEnabled = isPriceChartingEnabled();
+  const ptcgEnabled = isPokemonTcgEnabled();
 
-  if (!pcEnabled) {
+  if (!pcEnabled && !ptcgEnabled) {
     const response: PricingResponse = {
       priceChartingEnabled: false,
+      pokemonTcgEnabled: false,
       cards: cards as EnrichedCard[],
     };
     return Response.json(response);
@@ -70,20 +76,34 @@ export async function POST(req: NextRequest) {
     cards,
     PC_CONCURRENCY,
     async (c) => {
-      const { match, error } = await fetchPriceChartingPrices(c);
+      const [pc, ptcg] = await Promise.all([
+        pcEnabled
+          ? fetchPriceChartingPrices(c)
+          : Promise.resolve({ match: undefined, error: undefined }),
+        ptcgEnabled
+          ? fetchPokemonTcgPrices(c)
+          : Promise.resolve({ match: undefined, error: undefined }),
+      ]);
       return {
         ...c,
-        priceCharting: match?.prices,
-        priceChartingMatchedName: match?.matchedName,
-        priceChartingMatchedSet: match?.matchedSet,
-        priceChartingProductId: match?.productId,
-        priceChartingError: error,
+        priceCharting: pc.match?.prices,
+        priceChartingMatchedName: pc.match?.matchedName,
+        priceChartingMatchedSet: pc.match?.matchedSet,
+        priceChartingProductId: pc.match?.productId,
+        priceChartingError: pc.error,
+        tcgplayerNm: ptcg.match?.nmMarket,
+        tcgplayerVariant: ptcg.match?.variant,
+        tcgplayerMatchedName: ptcg.match?.matchedName,
+        tcgplayerMatchedSet: ptcg.match?.matchedSet,
+        tcgplayerUrl: ptcg.match?.productUrl,
+        tcgplayerError: ptcg.error,
       };
     }
   );
 
   const response: PricingResponse = {
-    priceChartingEnabled: true,
+    priceChartingEnabled: pcEnabled,
+    pokemonTcgEnabled: ptcgEnabled,
     cards: enriched,
   };
   return Response.json(response);

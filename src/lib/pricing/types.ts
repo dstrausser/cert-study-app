@@ -33,9 +33,16 @@ export type EnrichedCard = ParsedCard & {
   priceChartingMatchedSet?: string;
   priceChartingProductId?: string;
   priceChartingError?: string;
+  tcgplayerNm?: number;
+  tcgplayerVariant?: string;
+  tcgplayerMatchedName?: string;
+  tcgplayerMatchedSet?: string;
+  tcgplayerUrl?: string;
+  tcgplayerError?: string;
 };
 
 export type PricingResponse = {
   priceChartingEnabled: boolean;
+  pokemonTcgEnabled: boolean;
   cards: EnrichedCard[];
 };
